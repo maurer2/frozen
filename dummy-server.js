@@ -1,26 +1,32 @@
 import * as http from 'http';
 import * as url from 'url';
-import * as statusJSON from './dumps/status.json';
-import * as tripJSON from './dumps/trip.json';
 
-const urlMap = {
+import statusJSON from './dumps/status.json';
+import tripJSON from './dumps/trip.json';
+
+const routesMap = {
   '/status': statusJSON,
   '/trip': tripJSON,
 };
 
 const server = http.createServer((request, response) => {
   const { url: urlRaw } = request;
-  const urlParsed = url.parse(urlRaw);
-  const routeName = urlParsed.pathname;
+  const currentRoute = url.parse(urlRaw).pathname;
+  const hasMatchingRoute = Object.keys(routesMap).some(route => currentRoute.includes(route));
 
-  if (Object.keys(urlMap).includes(routeName)) {
-    response
-      .setHeader('Content-Type', 'application/json');
+  if (hasMatchingRoute) {
+    const matchingRoute = routesMap[currentRoute];
 
-    return response.end(JSON.stringify(urlMap[routeName]));
+    response.setHeader('Content-Type', 'application/json');
+    response.end(JSON.stringify(matchingRoute));
+
+    return response;
   }
 
-  return response.end('404');
+  response.writeHead(404);
+  response.end();
+
+  return response;
 });
 
 server.listen(8080, (error) => {
