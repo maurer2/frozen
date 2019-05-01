@@ -1,0 +1,19 @@
+{
+  "name": "ice-on-board-api-dump",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:maurer2/ice-on-board-api-dump.git",
+  "author": "Martin",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/preset-env": "^7.4.4",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "esm": "^3.2.22"
+  },
+  "scripts": {
+    "server:start": "node -r esm dummy-server"
+  }
+}
