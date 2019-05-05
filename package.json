@@ -23,6 +23,6 @@
     "server:start": "node -r esm dummy-server.js",
     "server-ts:start": "ts-node dummy-server.ts",
     "lint:js": "eslint ./*.js",
-    "lint:ts": "tslint --project tsconfig.json"
+    "lint:ts": "tslint --config ./tslint.json --project ./tsconfig.json"
   }
 }

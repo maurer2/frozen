@@ -4,17 +4,17 @@ export declare type Internet = 'HIGH' | 'LOW';
 
 export declare type GpsStatus = 'VALID' | 'INVALID';
 
-export declare type TrainType = {
+export declare enum TrainType {
   ICE,
   IC,
-};
+}
 
 export declare enum WagonClass {
   First = 'FIRST',
   Second = 'SECOND',
 }
 
-export declare interface Status {
+export declare interface Status extends JSON {
   connection: boolean;
   servicelevel: ServiceLevel;
   internet: Internet;
@@ -27,7 +27,7 @@ export declare interface Status {
   navigationChange: string;
 }
 
-export declare interface Trip {
+export declare interface Trip extends JSON {
   tripDate: string;
   trainType: TrainType;
   vzn: string;

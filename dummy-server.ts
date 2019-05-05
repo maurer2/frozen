@@ -7,15 +7,15 @@ import tripJson from './dumps/trip.json';
 const routesMap = {
   '/status': statusJson,
   '/trip': tripJson,
-};
+} as { [name: string]: any };
 
-const server = http.createServer((request, response) => {
+const server = http.createServer((request: any, response: any) => {
   const { url: urlRaw } = request;
-  const currentRoute = url.parse(urlRaw).pathname;
-  const hasMatchingRoute = Object.keys(routesMap).some(route => currentRoute.includes(route));
+  const currentRoute: string = url.parse(urlRaw).pathname;
+  const hasMatchingRoute: boolean = (Object.keys(routesMap) as string[]).some((route: string) => currentRoute.includes(route));
 
   if (hasMatchingRoute) {
-    const matchingRoute = routesMap[currentRoute];
+    const matchingRoute: string = routesMap[currentRoute];
 
     response.setHeader('Content-Type', 'application/json');
     response.end(JSON.stringify(matchingRoute));
@@ -29,7 +29,7 @@ const server = http.createServer((request, response) => {
   return response;
 });
 
-server.listen(8080, (error) => {
+server.listen(8080, (error?: Error) => {
   if (error) {
     console.log('Error', error);
   }
