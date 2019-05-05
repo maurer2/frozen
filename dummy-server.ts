@@ -9,10 +9,11 @@ const routesMap = {
   '/trip': tripJson,
 } as { [name: string]: any };
 
-const server = http.createServer((request: any, response: any) => {
+const server: http.Server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
   const { url: urlRaw } = request;
   const currentRoute: string = url.parse(urlRaw).pathname;
-  const hasMatchingRoute: boolean = (Object.keys(routesMap) as string[]).some((route: string) => currentRoute.includes(route));
+  const hasMatchingRoute: boolean = (Object.keys(routesMap) as string[])
+    .some((route: string) => currentRoute.includes(route));
 
   if (hasMatchingRoute) {
     const matchingRoute: string = routesMap[currentRoute];
