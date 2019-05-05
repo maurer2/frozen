@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "target": "es2017",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "include": [
+    "./typings.d.ts",
+    "./**.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "types" : [
+    "node"
+  ]
+}

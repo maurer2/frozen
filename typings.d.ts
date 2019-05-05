@@ -1,20 +1,20 @@
-type ServiceLevel = 'AVAILABLE_SERVICE' | 'TEST';
+export declare type ServiceLevel = 'AVAILABLE_SERVICE' | 'TEST';
 
-type Internet = 'HIGH' | 'LOW';
+export declare type Internet = 'HIGH' | 'LOW';
 
-type GpsStatus = 'VALID' | 'INVALID';
+export declare type GpsStatus = 'VALID' | 'INVALID';
 
-type TrainType = {
+export declare type TrainType = {
   ICE,
   IC,
-}
+};
 
-enum WagonClass {
+export declare enum WagonClass {
   First = 'FIRST',
   Second = 'SECOND',
 }
 
-interface Status {
+export declare interface Status {
   connection: boolean;
   servicelevel: ServiceLevel;
   internet: Internet;
@@ -27,7 +27,7 @@ interface Status {
   navigationChange: string;
 }
 
-interface Trip {
+export declare interface Trip {
   tripDate: string;
   trainType: TrainType;
   vzn: string;
@@ -38,7 +38,7 @@ interface Trip {
   stops: Stop[];
 }
 
-interface StopInfo {
+export declare interface StopInfo {
   scheduledNext: string;
   actualNext: string;
   actualLast: string;
@@ -47,18 +47,18 @@ interface StopInfo {
   finalStationEvaNr: string;
 }
 
-interface Geocoordinates {
+export declare interface Geocoordinates {
   latitude: number;
   longitude: number;
 }
 
-interface Station {
+export declare interface Station {
   evaNr: string;
   name: string;
   geocoordinates: Geocoordinates;
 }
 
-interface Timetable {
+export declare interface Timetable {
   scheduledArrivalTime?: number;
   actualArrivalTime?: number;
   showActualArrivalTime?: boolean;
@@ -69,19 +69,19 @@ interface Timetable {
   departureDelay: string;
 }
 
-interface Track {
+export declare interface Track {
   scheduled: string;
   actual: string;
 }
 
-interface Info {
+export declare interface Info {
   status: number;
   passed: boolean;
   distance: number;
   distanceFromStart: number;
 }
 
-interface Stop {
+export declare interface Stop {
   station: Station;
   timetable: Timetable;
   track: Track;
@@ -89,12 +89,12 @@ interface Stop {
   delayReasons?: any;
 }
 
-interface ConflictInfo {
+export declare interface ConflictInfo {
   status: string;
   text?: any;
 }
 
-interface SelectedRoute {
+export declare interface SelectedRoute {
   conflictInfo: ConflictInfo;
   mobility?: any;
 }
