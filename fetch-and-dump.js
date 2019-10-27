@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 const routesMap = {
   status: 'https://iceportal.de/api1/rs/tripInfo/trip',
   trip: 'https://iceportal.de/api1/rs/status',
+  usage_info: 'http://login.wifionice.de/usage_info/',
 };
 
 const fetchDataFromApi = (url) => {
@@ -50,8 +51,9 @@ const fetchApiData = (url, name) => {
     })
     .catch((error) => {
       console.log('error', error);
-    });  
+    });
 };
 
 fetchApiData(routesMap.status, 'status');
 fetchApiData(routesMap.trip, 'trip');
+fetchApiData(routesMap.usage_info, 'usage_info');
