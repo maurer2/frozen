@@ -4,8 +4,8 @@ import fetch from 'node-fetch';
 
 // urls
 const routesMap = {
-  'status': '/https://iceportal.de/api1/rs/tripInfo/trip',
-  'trip': 'https://iceportal.de/api1/rs/status',
+  status: 'https://iceportal.de/api1/rs/tripInfo/trip',
+  trip: 'https://iceportal.de/api1/rs/status',
 };
 
 const fetchDataFromApi = (url) => {
@@ -23,9 +23,9 @@ const fetchDataFromApi = (url) => {
   return fetchedData;
 };
 
-const dumpData = data => new Promise((resolve, reject) => {
+const dumpData = (data, name) => new Promise((resolve, reject) => {
   const randomHash = uid(3);
-  const newFile = fs.createWriteStream(`status-${randomHash}.json`);
+  const newFile = fs.createWriteStream(`./dumps/${name}-${randomHash}.json`);
 
   newFile.on('error', () => {
     reject();
@@ -39,15 +39,19 @@ const dumpData = data => new Promise((resolve, reject) => {
   newFile.end();
 });
 
-fetchDataFromApi('https://iceportal.de/api1/rs/status')
-  .then((data) => {
-    console.log(data);
+const fetchApiData = (url, name) => {
+  fetchDataFromApi(url)
+    .then((data) => {
+      dumpData(data, name)
+        .then(() => console.log(`done ${name}`))
+        .catch((error) => {
+          console.log('error', error);
+        });
+    })
+    .catch((error) => {
+      console.log('error', error);
+    });  
+};
 
-    dumpData(data)
-      .then(() => {
-        console.log('done');
-      })
-      .catch((error) => {
-        console.log('error', error);
-      });
-  });
+fetchApiData(routesMap.status, 'status');
+fetchApiData(routesMap.trip, 'trip');
