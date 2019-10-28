@@ -15,10 +15,13 @@ const fetchDataFromApi = (url) => {
       const { ok, statusText } = response;
 
       if (!ok) {
-        return new Error(statusText);
+        throw new Error(statusText);
       }
 
       return response.json();
+    })
+    .catch((error) => {
+      throw new Error(error);
     });
 
   return fetchedData;
@@ -28,8 +31,8 @@ const dumpData = (data, name) => new Promise((resolve, reject) => {
   const randomHash = uid(3);
   const newFile = fs.createWriteStream(`./dumps/${name}-${randomHash}.json`);
 
-  newFile.on('error', () => {
-    reject();
+  newFile.on('error', (error) => {
+    reject(error);
   });
 
   newFile.on('finish', () => {
@@ -46,11 +49,12 @@ const fetchApiData = (url, name) => {
       dumpData(data, name)
         .then(() => console.log(`done ${name}`))
         .catch((error) => {
-          console.log('error', error);
+          throw new Error(error);
         });
     })
     .catch((error) => {
-      console.log('error', error);
+      console.log(error);
+      process.exit(1);
     });
 };
 
