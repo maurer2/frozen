@@ -10,11 +10,10 @@
     "test": "xo && ava",
     "start": "app"
   },
-  "files": [
-    "cli.js",
-    "ui.js"
-  ],
   "dependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
     "eslint-config-airbnb": "^18.0.1",
     "import-jsx": "^3.0.0",
     "ink": "^2.5.0",
