@@ -7,13 +7,15 @@
     "node": ">=8"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "start": "app"
   },
   "files": [
     "cli.js",
     "ui.js"
   ],
   "dependencies": {
+    "eslint-config-airbnb": "^18.0.1",
     "import-jsx": "^3.0.0",
     "ink": "^2.5.0",
     "meow": "^5.0.0",

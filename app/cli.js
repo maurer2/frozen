@@ -1,25 +1,21 @@
 #!/usr/bin/env node
-
-'use strict';
 const React = require('react');
 const importJsx = require('import-jsx');
-const {
-  render
-} = require('ink');
+const { render } = require('ink');
 const meow = require('meow');
 
-const ui = importJsx('./ui');
+const app = importJsx('./src/app');
 
 const cli = meow(`
   Usage
     $ app
 
   Options
-      --name  Your name
+      --name Your name
 
   Examples
     $ app --name=Jane
     Hello, Jane
 `);
 
-render(React.createElement(ui, cli.flags));
+render(React.createElement(app, cli.flags));
