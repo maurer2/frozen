@@ -29,5 +29,9 @@
     "lint:js": "eslint ./*.js",
     "lint:ts": "tslint --config ./tslint.json --project ./tsconfig.json",
     "fetch-and-dump": "node -r esm fetch-and-dump.js"
+  },
+  "resolutions": {
+    "**/**/eslint-utils": "^1.4.1",
+    "**/**/lodash": "^4.17.13"
   }
 }
