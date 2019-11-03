@@ -6,13 +6,14 @@ const Header = () => {
   const colors = ['red']; 
 
   return (
-    <Box>
+    <Box marginBottom={2}>
       <BigText
         text="ICE-Status"
         font="simple"
         align="center"
         colors={colors}
-        space={false}/>
+        space={false}
+      />
     </Box>
   )
 };
