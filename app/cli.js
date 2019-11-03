@@ -6,16 +6,6 @@ const meow = require('meow');
 
 const app = importJsx('./src/app');
 
-const cli = meow(`
-  Usage
-    $ app
-
-  Options
-      --name Your name
-
-  Examples
-    $ app --name=Jane
-    Hello, Jane
-`);
+const cli = meow();
 
 render(React.createElement(app, cli.flags));

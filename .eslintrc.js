@@ -8,6 +8,8 @@ module.exports = {
   },
   rules: {},
   parserOptions: {},
-  plugins: [],
+  plugins: [
+    "react"
+  ],
   settings: {},
 };
