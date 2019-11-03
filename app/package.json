@@ -28,6 +28,7 @@
     "ink-big-text": "^1.0.1",
     "ink-box": "^1.0.0",
     "ink-gradient": "^1.0.0",
+    "ink-progress-bar": "^3.0.0",
     "ink-testing-library": "^1.0.2",
     "meow": "^5.0.0",
     "prop-types": "^15.7.2",
@@ -37,11 +38,6 @@
   "ava": {
     "require": [
       "@babel/register"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
     ]
   },
   "xo": {

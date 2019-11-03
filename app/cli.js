@@ -4,8 +4,8 @@ const importJsx = require('import-jsx');
 const { render } = require('ink');
 const meow = require('meow');
 
-const app = importJsx('./src/app');
+const App = importJsx('./src/App');
 
 const cli = meow();
 
-render(React.createElement(app, cli.flags));
+render(React.createElement(App, cli.flags));
