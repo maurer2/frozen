@@ -1,6 +1,9 @@
 import React, {Fragment} from 'react';
-import {Text, Color, Box} from 'ink';
+import {Color, Box} from 'ink';
 import BigText from 'ink-big-text';
+import importJsx from 'import-jsx';
+
+const Header = importJsx('./components/Header');
 
 // dummyData
 const data = {
@@ -28,9 +31,7 @@ const data = {
 
 const App = () => (
   <Box width="100%" padding={1} flexDirection="column">
-    <Box>
-      <BigText text="ICE Status" font="simple" align="center"  colors={['red']} space={false}/>
-    </Box>
+    <Header />
 
     <Box>
       <dl>

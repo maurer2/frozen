@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <Box>
       <BigText
-        text="ICE Status"
+        text="ICE-Status"
         font="simple"
         align="center"
         colors={colors}
@@ -17,4 +17,4 @@ const Header = () => {
   )
 };
 
-export default Header;
+module.exports = Header;
