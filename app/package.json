@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "bin": "cli.js",
+  "author": "Martin",
   "scripts": {
     "test": "xo && ava",
     "start": "clear && app"

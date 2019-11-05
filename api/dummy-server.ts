@@ -1,6 +1,8 @@
 import * as http from 'http';
 import * as url from 'url';
 
+import random from 'lodash/random';
+
 import statusJson from './dumps/status.json';
 import tripJson from './dumps/trip.json';
 
@@ -24,6 +26,21 @@ const server: http.Server = http.createServer((request: http.IncomingMessage, re
     return response;
   }
 
+  if (currentRoute.includes('test')) {
+    const testData = {
+      speed: random(0, 300, false),
+      timestamp: Date.now(),
+    };
+    const testDataStringified: string = JSON.stringify(testData);
+
+    response.setHeader('Content-Type', 'application/json');
+    response.end(JSON.stringify(testDataStringified));
+
+    console.log(testDataStringified);
+
+    return response;
+  }
+
   response.writeHead(404);
   response.end();
 
@@ -35,5 +52,5 @@ server.listen(8080, (error?: Error) => {
     console.log('Error', error);
   }
 
-  console.log('Listening on 8080');
+  console.log('Listening on 8080: http://localhost:8080/test');
 });
