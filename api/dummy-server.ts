@@ -15,7 +15,7 @@ const routesMap = {
   },
 } as { [name: string]: any };
 
-const createJSONResponse = (response: http.ServerResponse, data: string) => {
+const createJSONResponse = (response: http.ServerResponse, data: string): http.ServerResponse => {
   const dataStringified = JSON.stringify(data);
 
   response.setHeader('Content-Type', 'application/json');
@@ -24,7 +24,7 @@ const createJSONResponse = (response: http.ServerResponse, data: string) => {
   return response;
 };
 
-const createErrorResponse = (response: http.ServerResponse) => {
+const createErrorResponse = (response: http.ServerResponse): http.ServerResponse => {
   response.writeHead(404, { 'Content-Type': 'text/html' });
   response.write('404');
   response.end();
@@ -35,7 +35,7 @@ const createErrorResponse = (response: http.ServerResponse) => {
 const server: http.Server = http.createServer((
   request: http.IncomingMessage,
   response: http.ServerResponse,
-) => {
+): http.ServerResponse => {
   const { url: urlRaw } = request;
   const currentRoute: string = url.parse(urlRaw).pathname;
   const hasMatchingRoute: boolean = (Object.keys(routesMap) as string[])
@@ -50,7 +50,7 @@ const server: http.Server = http.createServer((
   return createErrorResponse(response);
 });
 
-server.listen(8080, (error?: Error) => {
+server.listen(8080, (error?: Error): void => {
   if (error) {
     console.log('Error', error);
   }

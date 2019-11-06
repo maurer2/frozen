@@ -12,7 +12,8 @@
   },
   "include": [
     "./typings.d.ts",
-    "./**.ts"
+    "./**.ts",
+    "./types/**.ts"
   ],
   "exclude": [
     "node_modules"
