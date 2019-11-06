@@ -9,42 +9,45 @@ import tripJson from './dumps/trip.json';
 const routesMap = {
   '/status': statusJson,
   '/trip': tripJson,
+  '/test': {
+    speed: random(0, 300, false),
+    timestamp: Date.now(),
+  },
 } as { [name: string]: any };
 
-const server: http.Server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
+const createJSONResponse = (response: http.ServerResponse, data: string) => {
+  const dataStringified = JSON.stringify(data);
+
+  response.setHeader('Content-Type', 'application/json');
+  response.end(dataStringified);
+
+  return response;
+};
+
+const createErrorResponse = (response: http.ServerResponse) => {
+  response.writeHead(404, { 'Content-Type': 'text/html' });
+  response.write('404');
+  response.end();
+
+  return response;
+};
+
+const server: http.Server = http.createServer((
+  request: http.IncomingMessage,
+  response: http.ServerResponse,
+) => {
   const { url: urlRaw } = request;
   const currentRoute: string = url.parse(urlRaw).pathname;
   const hasMatchingRoute: boolean = (Object.keys(routesMap) as string[])
     .some((route: string) => currentRoute.includes(route));
 
   if (hasMatchingRoute) {
-    const matchingRoute: string = routesMap[currentRoute];
+    const dataOfRoute: string = routesMap[currentRoute];
 
-    response.setHeader('Content-Type', 'application/json');
-    response.end(JSON.stringify(matchingRoute));
-
-    return response;
+    return createJSONResponse(response, dataOfRoute);
   }
 
-  if (currentRoute.includes('test')) {
-    const testData = {
-      speed: random(0, 300, false),
-      timestamp: Date.now(),
-    };
-    const testDataStringified: string = JSON.stringify(testData);
-
-    response.setHeader('Content-Type', 'application/json');
-    response.end(JSON.stringify(testDataStringified));
-
-    console.log(testDataStringified);
-
-    return response;
-  }
-
-  response.writeHead(404);
-  response.end();
-
-  return response;
+  return createErrorResponse(response);
 });
 
 server.listen(8080, (error?: Error) => {
