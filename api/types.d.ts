@@ -100,6 +100,6 @@ export interface SelectedRoute {
 }
 
 export interface TestResponse {
-  speed: number,
-  timestamp: number,
+  speed: number;
+  timestamp: number;
 }
