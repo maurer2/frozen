@@ -2,22 +2,23 @@ import * as http from 'http';
 import * as url from 'url';
 
 import random from 'lodash/random';
-import { Status, Trip, TestResponse } from './typings';
+import { Status, Trip, TestResponse } from './types';
 
 import statusJson from './dumps/status.json';
 import tripJson from './dumps/trip.json';
 
 const status: Status = statusJson;
 const trip: Trip = tripJson.trip;
+const test: TestResponse = {
+  speed: random(0, 300, false),
+  timestamp: Date.now(),
+};
 
-const routesMap = {
+const routesMap: { [name: string]: Status | Trip | TestResponse } = {
   '/status': status,
   '/trip': trip,
-  '/test': {
-    speed: random(0, 300, false),
-    timestamp: Date.now(),
-  } as TestResponse,
-} as { [name: string]: Status | Trip | TestResponse };
+  '/test': test,
+};
 
 const createJSONResponse = (response: http.ServerResponse, data: string): http.ServerResponse => {
   const dataStringified = JSON.stringify(data, null, 2);

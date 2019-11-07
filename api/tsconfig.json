@@ -2,23 +2,25 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["es2016"],
+    "lib": ["es2015"],
     "module": "commonjs",
-    "target": "es2016",
+    "target": "es2015",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
   },
   "include": [
-    "./typings.d.ts",
+    "./types.d.ts",
     "./**.ts",
-    "./types/**.ts"
   ],
   "exclude": [
     "node_modules"
   ],
-  "types" : [
-    "node"
-  ]
+  "paths": {
+    "*": [
+      "./types.d.ts",
+    ]
+  }
 }

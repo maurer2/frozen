@@ -23,6 +23,9 @@ module.exports = {
           ".js",
           ".ts",
         ],
+        "moduleDirectory": [
+          'node_modules',
+        ],
       }
     },
   },

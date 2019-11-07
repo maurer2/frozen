@@ -1,20 +1,20 @@
-export declare type ServiceLevel = 'AVAILABLE_SERVICE' | 'TEST';
+export type ServiceLevel = 'AVAILABLE_SERVICE' | 'TEST';
 
-export declare type Internet = 'HIGH' | 'LOW';
+export type Internet = 'HIGH' | 'LOW';
 
-export declare type GpsStatus = 'VALID' | 'INVALID';
+export type GpsStatus = 'VALID' | 'INVALID';
 
-export declare enum TrainType {
+export enum TrainType {
   ICE,
   IC,
 }
 
-export declare enum WagonClass {
+export enum WagonClass {
   First = 'FIRST',
   Second = 'SECOND',
 }
 
-export declare interface Status {
+export interface Status {
   connection: boolean;
   servicelevel: string;
   internet: string;
@@ -27,7 +27,7 @@ export declare interface Status {
   navigationChange: string;
 }
 
-export declare interface Trip {
+export interface Trip {
   tripDate: string;
   trainType: string;
   vzn: string;
@@ -38,7 +38,7 @@ export declare interface Trip {
   stops: Stop[];
 }
 
-export declare interface StopInfo {
+export interface StopInfo {
   scheduledNext: string;
   actualNext: string;
   actualLast: string;
@@ -47,18 +47,18 @@ export declare interface StopInfo {
   finalStationEvaNr: string;
 }
 
-export declare interface Geocoordinates {
+export interface Geocoordinates {
   latitude: number;
   longitude: number;
 }
 
-export declare interface Station {
+export interface Station {
   evaNr: string;
   name: string;
   geocoordinates: Geocoordinates;
 }
 
-export declare interface Timetable {
+export interface Timetable {
   scheduledArrivalTime?: number;
   actualArrivalTime?: number;
   showActualArrivalTime?: boolean;
@@ -69,19 +69,19 @@ export declare interface Timetable {
   departureDelay: string;
 }
 
-export declare interface Track {
+export interface Track {
   scheduled: string;
   actual: string;
 }
 
-export declare interface Info {
+export interface Info {
   status: number;
   passed: boolean;
   distance: number;
   distanceFromStart: number;
 }
 
-export declare interface Stop {
+export interface Stop {
   station: Station;
   timetable: Timetable;
   track: Track;
@@ -89,17 +89,17 @@ export declare interface Stop {
   delayReasons?: any;
 }
 
-export declare interface ConflictInfo {
+export interface ConflictInfo {
   status: string;
   text?: any;
 }
 
-export declare interface SelectedRoute {
+export interface SelectedRoute {
   conflictInfo: ConflictInfo;
   mobility?: any;
 }
 
-export declare interface TestResponse {
+export interface TestResponse {
   speed: number,
   timestamp: number,
 }
