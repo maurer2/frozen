@@ -1,1 +1,12 @@
-{"connection":true,"servicelevel":"AVAILABLE_SERVICE","internet":"HIGH","speed":180,"gpsStatus":"VALID","latitude":52.081095,"longitude":13.146125,"serverTime":1555687853399,"wagonClass":"FIRST","navigationChange":"2019-04-19-03-45-11"}
+{
+  "connection": true,
+  "servicelevel": "AVAILABLE_SERVICE",
+  "internet": "HIGH",
+  "speed": 180,
+  "gpsStatus": "VALID",
+  "latitude": 52.081095,
+  "longitude": 13.146125,
+  "serverTime": 1555687853399,
+  "wagonClass": "FIRST",
+  "navigationChange": "2019-04-19-03-45-11"
+}

@@ -1,1 +1,207 @@
-{"trip":{"tripDate":"2019-04-19","trainType":"ICE","vzn":"1536","actualPosition":8528,"distanceFromLastStop":28018,"totalDistance":434428,"stopInfo":{"scheduledNext":"8010159_00","actualNext":"8010159_00","actualLast":"8011113_00","actualLastStarted":"8010159","finalStationName":"Frankfurt (Main) Hbf","finalStationEvaNr":"8000105_00"},"stops":[{"station":{"evaNr":"8011102_00","name":"Berlin Gesundbrunnen","geocoordinates":{"latitude":52.548963,"longitude":13.388513}},"timetable":{"scheduledArrivalTime":null,"actualArrivalTime":null,"showActualArrivalTime":null,"arrivalDelay":"","scheduledDepartureTime":1555685460000,"actualDepartureTime":1555685460000,"showActualDepartureTime":true,"departureDelay":""},"track":{"scheduled":"5","actual":"5"},"info":{"status":0,"passed":true,"distance":0,"distanceFromStart":0},"delayReasons":null},{"station":{"evaNr":"8098160_00","name":"Berlin Hbf (tief)","geocoordinates":{"latitude":52.525592,"longitude":13.369545}},"timetable":{"scheduledArrivalTime":1555685880000,"actualArrivalTime":1555685880000,"showActualArrivalTime":true,"arrivalDelay":"","scheduledDepartureTime":1555686240000,"actualDepartureTime":1555686240000,"showActualDepartureTime":true,"departureDelay":""},"track":{"scheduled":"2","actual":"5"},"info":{"status":0,"passed":true,"distance":2899,"distanceFromStart":2899},"delayReasons":null},{"station":{"evaNr":"8011113_00","name":"Berlin Südkreuz","geocoordinates":{"latitude":52.475047,"longitude":13.365319}},"timetable":{"scheduledArrivalTime":1555686540000,"actualArrivalTime":1555686540000,"showActualArrivalTime":true,"arrivalDelay":"","scheduledDepartureTime":1555686660000,"actualDepartureTime":1555686660000,"showActualDepartureTime":true,"departureDelay":""},"track":{"scheduled":"3","actual":"3"},"info":{"status":0,"passed":true,"distance":5629,"distanceFromStart":8528},"delayReasons":null},{"station":{"evaNr":"8010159_00","name":"Halle (Saale) Hbf","geocoordinates":{"latitude":51.477509,"longitude":11.987085}},"timetable":{"scheduledArrivalTime":1555690380000,"actualArrivalTime":1555690380000,"showActualArrivalTime":true,"arrivalDelay":"","scheduledDepartureTime":1555690500000,"actualDepartureTime":1555690500000,"showActualDepartureTime":true,"departureDelay":""},"track":{"scheduled":"8","actual":"8"},"info":{"status":0,"passed":false,"distance":145690,"distanceFromStart":154218},"delayReasons":null},{"station":{"evaNr":"8010101_00","name":"Erfurt Hbf","geocoordinates":{"latitude":50.972551,"longitude":11.038499}},"timetable":{"scheduledArrivalTime":1555692480000,"actualArrivalTime":1555692480000,"showActualArrivalTime":true,"arrivalDelay":"","scheduledDepartureTime":1555692600000,"actualDepartureTime":1555692600000,"showActualDepartureTime":true,"departureDelay":""},"track":{"scheduled":"2","actual":"2"},"info":{"status":0,"passed":false,"distance":86719,"distanceFromStart":240937},"delayReasons":null},{"station":{"evaNr":"8000105_00","name":"Frankfurt (Main) Hbf","geocoordinates":{"latitude":50.107145,"longitude":8.663789}},"timetable":{"scheduledArrivalTime":1555700160000,"actualArrivalTime":1555700280000,"showActualArrivalTime":true,"arrivalDelay":"+2","scheduledDepartureTime":null,"actualDepartureTime":null,"showActualDepartureTime":null,"departureDelay":""},"track":{"scheduled":"13","actual":"13"},"info":{"status":0,"passed":false,"distance":193491,"distanceFromStart":434428},"delayReasons":null}]},"connection":null,"selectedRoute":{"conflictInfo":{"status":"NO_CONFLICT","text":null},"mobility":null}}
+{
+  "trip": {
+    "tripDate": "2019-04-19",
+    "trainType": "ICE",
+    "vzn": "1536",
+    "actualPosition": 8528,
+    "distanceFromLastStop": 28018,
+    "totalDistance": 434428,
+    "stopInfo": {
+      "scheduledNext": "8010159_00",
+      "actualNext": "8010159_00",
+      "actualLast": "8011113_00",
+      "actualLastStarted": "8010159",
+      "finalStationName": "Frankfurt (Main) Hbf",
+      "finalStationEvaNr": "8000105_00"
+    },
+    "stops": [{
+      "station": {
+        "evaNr": "8011102_00",
+        "name": "Berlin Gesundbrunnen",
+        "geocoordinates": {
+          "latitude": 52.548963,
+          "longitude": 13.388513
+        }
+      },
+      "timetable": {
+        "scheduledArrivalTime": null,
+        "actualArrivalTime": null,
+        "showActualArrivalTime": null,
+        "arrivalDelay": "",
+        "scheduledDepartureTime": 1555685460000,
+        "actualDepartureTime": 1555685460000,
+        "showActualDepartureTime": true,
+        "departureDelay": ""
+      },
+      "track": {
+        "scheduled": "5",
+        "actual": "5"
+      },
+      "info": {
+        "status": 0,
+        "passed": true,
+        "distance": 0,
+        "distanceFromStart": 0
+      },
+      "delayReasons": null
+    }, {
+      "station": {
+        "evaNr": "8098160_00",
+        "name": "Berlin Hbf (tief)",
+        "geocoordinates": {
+          "latitude": 52.525592,
+          "longitude": 13.369545
+        }
+      },
+      "timetable": {
+        "scheduledArrivalTime": 1555685880000,
+        "actualArrivalTime": 1555685880000,
+        "showActualArrivalTime": true,
+        "arrivalDelay": "",
+        "scheduledDepartureTime": 1555686240000,
+        "actualDepartureTime": 1555686240000,
+        "showActualDepartureTime": true,
+        "departureDelay": ""
+      },
+      "track": {
+        "scheduled": "2",
+        "actual": "5"
+      },
+      "info": {
+        "status": 0,
+        "passed": true,
+        "distance": 2899,
+        "distanceFromStart": 2899
+      },
+      "delayReasons": null
+    }, {
+      "station": {
+        "evaNr": "8011113_00",
+        "name": "Berlin Südkreuz",
+        "geocoordinates": {
+          "latitude": 52.475047,
+          "longitude": 13.365319
+        }
+      },
+      "timetable": {
+        "scheduledArrivalTime": 1555686540000,
+        "actualArrivalTime": 1555686540000,
+        "showActualArrivalTime": true,
+        "arrivalDelay": "",
+        "scheduledDepartureTime": 1555686660000,
+        "actualDepartureTime": 1555686660000,
+        "showActualDepartureTime": true,
+        "departureDelay": ""
+      },
+      "track": {
+        "scheduled": "3",
+        "actual": "3"
+      },
+      "info": {
+        "status": 0,
+        "passed": true,
+        "distance": 5629,
+        "distanceFromStart": 8528
+      },
+      "delayReasons": null
+    }, {
+      "station": {
+        "evaNr": "8010159_00",
+        "name": "Halle (Saale) Hbf",
+        "geocoordinates": {
+          "latitude": 51.477509,
+          "longitude": 11.987085
+        }
+      },
+      "timetable": {
+        "scheduledArrivalTime": 1555690380000,
+        "actualArrivalTime": 1555690380000,
+        "showActualArrivalTime": true,
+        "arrivalDelay": "",
+        "scheduledDepartureTime": 1555690500000,
+        "actualDepartureTime": 1555690500000,
+        "showActualDepartureTime": true,
+        "departureDelay": ""
+      },
+      "track": {
+        "scheduled": "8",
+        "actual": "8"
+      },
+      "info": {
+        "status": 0,
+        "passed": false,
+        "distance": 145690,
+        "distanceFromStart": 154218
+      },
+      "delayReasons": null
+    }, {
+      "station": {
+        "evaNr": "8010101_00",
+        "name": "Erfurt Hbf",
+        "geocoordinates": {
+          "latitude": 50.972551,
+          "longitude": 11.038499
+        }
+      },
+      "timetable": {
+        "scheduledArrivalTime": 1555692480000,
+        "actualArrivalTime": 1555692480000,
+        "showActualArrivalTime": true,
+        "arrivalDelay": "",
+        "scheduledDepartureTime": 1555692600000,
+        "actualDepartureTime": 1555692600000,
+        "showActualDepartureTime": true,
+        "departureDelay": ""
+      },
+      "track": {
+        "scheduled": "2",
+        "actual": "2"
+      },
+      "info": {
+        "status": 0,
+        "passed": false,
+        "distance": 86719,
+        "distanceFromStart": 240937
+      },
+      "delayReasons": null
+    }, {
+      "station": {
+        "evaNr": "8000105_00",
+        "name": "Frankfurt (Main) Hbf",
+        "geocoordinates": {
+          "latitude": 50.107145,
+          "longitude": 8.663789
+        }
+      },
+      "timetable": {
+        "scheduledArrivalTime": 1555700160000,
+        "actualArrivalTime": 1555700280000,
+        "showActualArrivalTime": true,
+        "arrivalDelay": "+2",
+        "scheduledDepartureTime": null,
+        "actualDepartureTime": null,
+        "showActualDepartureTime": null,
+        "departureDelay": ""
+      },
+      "track": {
+        "scheduled": "13",
+        "actual": "13"
+      },
+      "info": {
+        "status": 0,
+        "passed": false,
+        "distance": 193491,
+        "distanceFromStart": 434428
+      },
+      "delayReasons": null
+    }]
+  },
+  "connection": null,
+  "selectedRoute": {
+    "conflictInfo": {
+      "status": "NO_CONFLICT",
+      "text": null
+    },
+    "mobility": null
+  }
+}

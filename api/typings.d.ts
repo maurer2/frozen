@@ -14,22 +14,22 @@ export declare enum WagonClass {
   Second = 'SECOND',
 }
 
-export declare interface Status extends JSON {
+export declare interface Status {
   connection: boolean;
-  servicelevel: ServiceLevel;
-  internet: Internet;
+  servicelevel: string;
+  internet: string;
   speed: number;
-  gpsStatus: GpsStatus;
+  gpsStatus: string;
   latitude: number;
   longitude: number;
   serverTime: number;
-  wagonClass: WagonClass;
+  wagonClass: string;
   navigationChange: string;
 }
 
-export declare interface Trip extends JSON {
+export declare interface Trip {
   tripDate: string;
-  trainType: TrainType;
+  trainType: string;
   vzn: string;
   actualPosition: number;
   distanceFromLastStop: number;
@@ -97,4 +97,9 @@ export declare interface ConflictInfo {
 export declare interface SelectedRoute {
   conflictInfo: ConflictInfo;
   mobility?: any;
+}
+
+export declare interface TestResponse {
+  speed: number,
+  timestamp: number,
 }

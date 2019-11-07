@@ -2,21 +2,25 @@ import * as http from 'http';
 import * as url from 'url';
 
 import random from 'lodash/random';
+import { Status, Trip, TestResponse } from './typings';
 
 import statusJson from './dumps/status.json';
 import tripJson from './dumps/trip.json';
 
+const status: Status = statusJson;
+const trip: Trip = tripJson.trip;
+
 const routesMap = {
-  '/status': statusJson,
-  '/trip': tripJson,
+  '/status': status,
+  '/trip': trip,
   '/test': {
     speed: random(0, 300, false),
     timestamp: Date.now(),
-  },
-} as { [name: string]: any };
+  } as TestResponse,
+} as { [name: string]: Status | Trip | TestResponse };
 
 const createJSONResponse = (response: http.ServerResponse, data: string): http.ServerResponse => {
-  const dataStringified = JSON.stringify(data);
+  const dataStringified = JSON.stringify(data, null, 2);
 
   response.setHeader('Content-Type', 'application/json');
   response.end(dataStringified);
@@ -42,7 +46,7 @@ const server: http.Server = http.createServer((
     .some((route: string) => currentRoute.includes(route));
 
   if (hasMatchingRoute) {
-    const dataOfRoute: string = routesMap[currentRoute];
+    const dataOfRoute: string = routesMap[currentRoute] as any;
 
     return createJSONResponse(response, dataOfRoute);
   }
