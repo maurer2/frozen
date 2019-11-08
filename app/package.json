@@ -27,8 +27,10 @@
     "ink-box": "^1.0.0",
     "ink-gradient": "^1.0.0",
     "ink-progress-bar": "^3.0.0",
+    "ink-spinner": "^3.0.1",
     "ink-testing-library": "^1.0.2",
     "meow": "^5.0.0",
+    "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "xo": "^0.25.3"

@@ -5,6 +5,7 @@ import importJsx from 'import-jsx';
 const Header = importJsx('./components/Header');
 const Route = importJsx('./components/Route');
 const Trip = importJsx('./components/Trip');
+const Query = importJsx('./components/Query');
 
 // dummyData
 const data = {
@@ -37,6 +38,10 @@ const App = () => {
   return (
     <Box width={20} padding={1} flexDirection="column" justifyContent="flex-start">
       <Header width="50%" />
+
+      <Box paddingBottom={1}>
+        <Query  />
+      </Box>
 
       <Box width={10} textWrap="truncate" flexBasis={10}>
         <Route progress="85.12345" />
