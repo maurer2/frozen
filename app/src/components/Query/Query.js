@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Box} from 'ink';
 import Spinner from 'ink-spinner';
 import fetch from 'node-fetch';
+// import styled from 'styled-components'
 
 
 const url = 'http://localhost:8080/test';
@@ -54,14 +55,9 @@ const Query = () => {
           <Spinner type="point"/>
         </>
       ) : (
-        <dl>
-          <dt>
-            Current speed:
-          </dt>
-          <dd>
-            { speed } KPH
-          </dd>
-        </dl>
+        <Box>
+          Current speed: { speed } KPH
+        </Box>
       )}
     </Box>
   )
