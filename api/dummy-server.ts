@@ -9,15 +9,27 @@ import tripJson from './dumps/trip.json';
 
 const status: Status = statusJson;
 const { trip }: { trip: Trip } = tripJson;
-const test: TestResponse = {
+
+const getTestData = (): TestResponse => ({
   speed: random(0, 300, false),
   timestamp: Date.now(),
-};
+});
 
 const routesMap: { [name: string]: Status | Trip | TestResponse } = {
   '/status': status,
   '/trip': trip,
-  '/test': test,
+  '/test': getTestData(),
+};
+
+const getRouteData = (routeName: string): Status | Trip | TestResponse | boolean => {
+  const routes = Object.keys(routesMap);
+  const routeIsMatching: boolean = routes.some((route: string) => route.includes(routeName));
+
+  if (!routeIsMatching) {
+    return false;
+  }
+
+  return (routeName === '/test') ? getTestData() : routesMap[routeName];
 };
 
 const createJSONResponse = (response: http.ServerResponse, data: string): http.ServerResponse => {
@@ -41,17 +53,15 @@ const server: http.Server = http.createServer((
 ): http.ServerResponse => {
   const { url: urlRaw } = request;
   const currentRoute: string = url.parse(urlRaw).pathname;
-  const routes = Object.keys(routesMap);
-  const routeIsMatching: boolean = routes.some((route: string) => currentRoute.includes(route));
+  const routeData = getRouteData(currentRoute);
 
-  if (routeIsMatching) {
-    const dataFromRoute = routesMap[currentRoute];
-    const dataStringified: string = JSON.stringify(dataFromRoute);
-
-    return createJSONResponse(response, dataStringified);
+  if (!routeData) {
+    return createErrorResponse(response);
   }
 
-  return createErrorResponse(response);
+  const routeDataStringified: string = JSON.stringify(routeData);
+
+  return createJSONResponse(response, routeDataStringified);
 });
 
 server.listen(8080, (error?: Error): void => {
