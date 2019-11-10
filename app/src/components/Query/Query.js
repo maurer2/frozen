@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Box} from 'ink';
 import Spinner from 'ink-spinner';
 import fetch from 'node-fetch';
-// import styled from 'styled-components'
-
+import {Observable} from 'rxjs';
+import {repeat, delay} from 'rxjs/operators';
 
 const url = 'http://localhost:8080/test';
 
-const fetchData = (url) => {
-  const fetchedData = fetch(url)
+const fetchObservable = Observable.create((observer) => {
+  fetch(url)
     .then((response) => {
       const { ok, statusText } = response;
 
@@ -18,34 +18,31 @@ const fetchData = (url) => {
 
       return response.json();
     })
-    .catch((error) => {
-      throw new Error(error);
-    });
-
-  return fetchedData;
-};
+    .then((payload) => {
+      observer.next(payload);
+      observer.complete();
+    })
+    .catch(error => observer.error(error));
+}).pipe(delay(2000));
 
 const Query = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [speed, setSpeed] = useState(0);
-  const waitTimeInSeconds = 10;
 
-  fetchData(url)
-    .then((payload) => {
-      const { speed } = payload;
+  useEffect(() => {
+    const subscribeToApi = fetchObservable
+      .pipe(repeat())
+      .subscribe((payload) => {
+        const { speed } = payload;
 
-      setTimeout(() => {
         setSpeed(speed);
-      }, 2000);
-    })
-    .catch((error) => {
-      setSpeed(error);
-    })
-    .finally(() => {
-      setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
-    });
+      });
+
+    return () => {
+      subscribeToApi.unsubscribe();
+    };
+  }, []);
 
   return (
     <Box width={10}>
