@@ -53,7 +53,7 @@ const Query = () => {
         </>
       ) : (
         <Box>
-          Current speed: { speed } KPH
+          Current speed: { speed } KPH (dummy)
         </Box>
       )}
     </Box>

@@ -6,7 +6,7 @@
   "author": "Martin",
   "scripts": {
     "test": "xo && ava",
-    "start": "clear && app"
+    "start": "node cli.js"
   },
   "dependencies": {
     "@babel/cli": "^7.6.4",

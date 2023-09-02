@@ -2,10 +2,9 @@ import React from 'react';
 import {Box, Text} from 'ink';
 
 const Trip = (stations) => {
-  
   return (
     <Box>
-      <Box>
+      <Box width={25}>
         <span>Stations: </span>
       </Box>
       <Box>
