@@ -24,8 +24,11 @@
     "lodash.random": "^3.2.0",
     "node-fetch": "^2.6.0",
     "ts-node": "^8.1.0",
-    "typescript": "^3.4.5",
-    "uid": "^0.0.2"
+    "typescript": "^5.2.2",
+    "uid": "^0.0.2",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.4",
+    "zod": "^3.22.2"
   },
   "scripts": {
     "server-ts:start": "ts-node dummy-server.ts",
@@ -33,10 +36,14 @@
     "lint:js:fix": "eslint './**/*.js' --fix",
     "lint:ts": "eslint './**/*.ts'",
     "lint:ts:fix": "eslint './**/*.ts' --fix",
-    "fetch-and-dump": "node -r esm fetch-and-dump.js"
+    "fetch-and-dump": "node -r esm fetch-and-dump.js",
+    "schema:test:status": "vitest './schemas/status/status.spec.ts'"
   },
   "resolutions": {
     "**/**/eslint-utils": "^1.4.1",
     "**/**/lodash": "^4.17.13"
+  },
+  "devDependencies": {
+    "jsdom": "^22.1.0"
   }
 }

@@ -2,14 +2,15 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["es2015"],
+    "lib": [],
     "module": "commonjs",
-    "target": "es2015",
+    "target": "ES2022",
     "noImplicitAny": true,
     "removeComments": true,
-    "preserveConstEnums": true,
+    // "preserveConstEnums": true,
     "sourceMap": true,
     "moduleResolution": "node",
+    "strict": true,
   },
   "include": [
     "./types.d.ts",
