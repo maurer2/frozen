@@ -37,7 +37,8 @@
     "lint:ts": "eslint './**/*.ts'",
     "lint:ts:fix": "eslint './**/*.ts' --fix",
     "fetch-and-dump": "node -r esm fetch-and-dump.js",
-    "schema:test:status": "vitest './schemas/status/status.spec.ts'"
+    "schema:test:status": "vitest './schemas/status/status.spec.ts'",
+    "schema:test:trip": "vitest './schemas/trip/trip.spec.ts'"
   },
   "resolutions": {
     "**/**/eslint-utils": "^1.4.1",
