@@ -1,27 +1,34 @@
-import * as http from 'http';
-import * as url from 'url';
+import http, {type ServerResponse, type IncomingMessage, type Server} from 'node:http';
+import url from 'node:url';
 
 import random from 'lodash/random';
-import { Status, Trip, TestResponse } from './types';
 
-import statusJson from './dumps/status.json';
-import tripJson from './dumps/trip.json';
+import statusJson from './dumps/trip-pp9.json';
+import tripJson from './dumps/status-00p.json';
 
-const status: Status = statusJson;
-const { trip }: { trip: Trip } = tripJson;
+import type { StatusNew } from './schemas/status/status'
+import type { TripNew } from './schemas/trip/trip'
+
+export type TestResponse = {
+  status: StatusNew,
+  timestamp: number;
+}
 
 const getTestData = (): TestResponse => ({
-  speed: random(0, 300, false),
+  status: {
+    ...statusJson,
+    speed: random(0, 300, false),
+  } as StatusNew, // hack until const import is implemented: https://github.com/microsoft/TypeScript/issues/32063
   timestamp: Date.now(),
 });
 
-const routesMap: { [name: string]: Status | Trip | TestResponse } = {
-  '/status': status,
-  '/trip': trip,
+const routesMap: Record<string, StatusNew | TripNew | TestResponse> = {
+  '/status': statusJson as StatusNew,
+  '/trip': tripJson as TripNew,
   '/test': getTestData(),
 };
 
-const getRouteData = (routeName: string): Status | Trip | TestResponse | boolean => {
+const getRouteData = (routeName: string): StatusNew | TripNew | TestResponse | boolean => {
   const routes = Object.keys(routesMap);
   const routeIsMatching: boolean = routes.some((route: string) => route.includes(routeName));
 
@@ -32,14 +39,14 @@ const getRouteData = (routeName: string): Status | Trip | TestResponse | boolean
   return (routeName === '/test') ? getTestData() : routesMap[routeName];
 };
 
-const createJSONResponse = (response: http.ServerResponse, data: string): http.ServerResponse => {
+const createJSONResponse = (response: ServerResponse, data: string): ServerResponse => {
   response.setHeader('Content-Type', 'application/json');
   response.end(data);
 
   return response;
 };
 
-const createErrorResponse = (response: http.ServerResponse): http.ServerResponse => {
+const createErrorResponse = (response: ServerResponse): ServerResponse => {
   response.writeHead(404, { 'Content-Type': 'text/html' });
   response.write('404');
   response.end();
@@ -47,12 +54,22 @@ const createErrorResponse = (response: http.ServerResponse): http.ServerResponse
   return response;
 };
 
-const server: http.Server = http.createServer((
-  request: http.IncomingMessage,
-  response: http.ServerResponse,
-): http.ServerResponse => {
+const server: Server = http.createServer((
+  request: IncomingMessage,
+  response: ServerResponse,
+): ServerResponse => {
   const { url: urlRaw } = request;
-  const currentRoute: string = url.parse(urlRaw).pathname;
+
+  if (!urlRaw) {
+    return createErrorResponse(response);
+  }
+
+  const currentRoute = url.parse(urlRaw)?.pathname;
+
+  if (!currentRoute) {
+    return createErrorResponse(response);
+  }
+
   const routeData = getRouteData(currentRoute);
 
   if (!routeData) {

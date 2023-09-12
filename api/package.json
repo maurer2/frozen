@@ -10,7 +10,7 @@
     "@babel/plugin-transform-typescript": "^7.7.0",
     "@babel/preset-env": "^7.4.4",
     "@types/lodash": "^4.14.144",
-    "@types/node": "^12.12.6",
+    "@types/node": "^20.6.0",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "babel-eslint": "^10.0.1",
@@ -28,10 +28,11 @@
     "uid": "^0.0.2",
     "vite": "^4.4.9",
     "vitest": "^0.34.4",
-    "zod": "^3.22.2"
+    "zod": "^3.22.2",
+    "zod-fixture": "^2.5.0"
   },
   "scripts": {
-    "server-ts:start": "ts-node dummy-server.ts",
+    "start": "ts-node dummy-server.ts",
     "lint:js": "eslint './**/*.js'",
     "lint:js:fix": "eslint './**/*.js' --fix",
     "lint:ts": "eslint './**/*.ts'",

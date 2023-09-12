@@ -15,6 +15,7 @@ export const statusSchema = z
     trainType: z.enum(["ICE", "IC"]),
     tzn: z.string().min(2), // train number with train type
     wagonClass: z.enum(["FIRST", "SECOND"]),
+    serverTime: z.number(),
   });
 
 export type StatusNew = z.infer<typeof statusSchema>;
