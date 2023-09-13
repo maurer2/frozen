@@ -5,20 +5,39 @@ import random from 'lodash/random';
 
 import statusJson from './dumps/trip-pp9.json';
 import tripJson from './dumps/status-00p.json';
+import usageInfoJson from './dumps/usage_info-f8r.json';
 
-import type { StatusNew } from './schemas/status/status'
-import type { TripNew } from './schemas/trip/trip'
+import {statusSchema, type StatusNew} from './schemas/status/status'
+import {tripSchema, type TripNew} from './schemas/trip/trip'
+import type {UsageInfoNew} from './schemas/usage-info/usage-info'
 
 export type TestResponse = {
-  status: StatusNew,
+  status: StatusNew | null,
+  trip: TripNew | null,
+  usageInfo: UsageInfoNew,
   timestamp: number;
 }
 
+// typeguards
+// workaround until const import is implemented: https://github.com/microsoft/TypeScript/issues/32063
+const isStatusNew = (unknownObject: unknown): unknownObject is StatusNew => {
+  return statusSchema.safeParse(unknownObject).success;
+}
+
+const isTripNew = (unknownObject: unknown): unknownObject is TripNew => {
+  return tripSchema.safeParse(unknownObject).success;
+}
+
 const getTestData = (): TestResponse => ({
-  status: {
-    ...statusJson,
-    speed: random(0, 300, false),
-  } as StatusNew, // hack until const import is implemented: https://github.com/microsoft/TypeScript/issues/32063
+  status: isStatusNew(statusJson)
+    ? {
+      ...statusJson,
+      speed: random(0, 300, false),
+    } : null,
+  trip: isTripNew(tripJson)
+    ? tripJson
+    : null,
+  usageInfo: usageInfoJson,
   timestamp: Date.now(),
 });
 
