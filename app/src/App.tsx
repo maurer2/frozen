@@ -1,11 +1,12 @@
 import React, {Fragment} from 'react';
-import {Color, Box} from 'ink';
-import importJsx from 'import-jsx';
+// @ts-ignore
+import {Color, Box, Text} from 'ink';
+// @ts-ignore
 
-const Header = importJsx('./components/Header');
-const Route = importJsx('./components/Route');
-const Trip = importJsx('./components/Trip');
-const Query = importJsx('./components/Query');
+// const Header = importJsx('./components/Header');
+// const Route = importJsx('./components/Route');
+// const Trip = importJsx('./components/Trip');
+// const Query = importJsx('./components/Query');
 
 // dummyData
 const data = {
@@ -37,7 +38,13 @@ const App = () => {
 
   return (
     <Box width={20} padding={1} flexDirection="column" justifyContent="flex-start">
-      <Header width="50%" />
+      <Box paddingBottom={1}>
+        <Text>
+          Test
+        </Text>
+      </Box>
+
+      {/* <Header width="50%" />
 
       <Box paddingBottom={1}>
         <Query  />
@@ -66,9 +73,9 @@ const App = () => {
           </Fragment>
           ))}
         </dl>
-      </Box>
+      </Box> */}
     </Box>
   )
 };
 
-module.exports = App;
+export default App;
