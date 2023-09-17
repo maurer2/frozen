@@ -3,6 +3,8 @@ import React, {Fragment} from 'react';
 import {Color, Box, Text} from 'ink';
 // @ts-ignore
 
+import Header from './components/Header/Header.tsx'
+
 // const Header = importJsx('./components/Header');
 // const Route = importJsx('./components/Route');
 // const Trip = importJsx('./components/Trip');
@@ -44,8 +46,9 @@ const App = () => {
         </Text>
       </Box>
 
-      {/* <Header width="50%" />
+      <Header width="50%"/>
 
+      {/*
       <Box paddingBottom={1}>
         <Query  />
       </Box>
