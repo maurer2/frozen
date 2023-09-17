@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {Box, Text} from 'ink';
 
-const Trip = (stations) => {
+const Trip = (stations): ReactElement => {
   return (
     <Box>
       <Box width={25}>
-        <span>Stations: </span>
+        <Text>
+          <span>Stations: </span>
+        </Text>
       </Box>
       <Box>
         <ul>
@@ -22,4 +24,4 @@ const Trip = (stations) => {
   )
 };
 
-module.exports = Trip;
+export default Trip;

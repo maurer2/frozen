@@ -8,6 +8,8 @@ import Header from './components/Header/Header.tsx';
 import Query from './components/Query/Query.tsx';
 // @ts-ignore
 import Route from './components/Route/Route.tsx';
+// @ts-ignore
+import Trip from './components/Trip/Trip.tsx';
 
 // dummyData
 const data = {
@@ -53,13 +55,13 @@ const App = () => {
       </Box>
       */}
 
-      <Box width={10} flexBasis={10}>
+      {/* <Box width={10} flexBasis={10}>
         <Route progress="85.12345" />
-      </Box>
+      </Box> */}
 
-      {/*
       <Trip stations={stations} />
 
+      {/*
       <Box>
         <dl>
         {Object.keys(data.status).map((key) => (
