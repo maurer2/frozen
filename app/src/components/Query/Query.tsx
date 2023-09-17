@@ -1,8 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, ReactElement} from 'react';
+// @ts-ignore
 import {Box} from 'ink';
+// @ts-ignore
 import Spinner from 'ink-spinner';
+// @ts-ignore
 import fetch from 'node-fetch';
+// @ts-ignore
 import {Observable} from 'rxjs';
+// @ts-ignore
 import {repeat, delay} from 'rxjs/operators';
 
 const url = 'http://localhost:8080/test';
@@ -25,7 +30,7 @@ const fetchObservable = Observable.create((observer) => {
     .catch(error => observer.error(error));
 }).pipe(delay(2000));
 
-const Query = () => {
+const Query = (): ReactElement => {
   const [isLoading, setIsLoading] = useState(true);
   const [speed, setSpeed] = useState(0);
 
@@ -60,4 +65,4 @@ const Query = () => {
   )
 };
 
-module.exports = Query;
+export default Query;

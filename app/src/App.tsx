@@ -1,14 +1,13 @@
 import React, {Fragment} from 'react';
 // @ts-ignore
 import {Color, Box, Text} from 'ink';
+
 // @ts-ignore
-
-import Header from './components/Header/Header.tsx'
-
-// const Header = importJsx('./components/Header');
-// const Route = importJsx('./components/Route');
-// const Trip = importJsx('./components/Trip');
-// const Query = importJsx('./components/Query');
+import Header from './components/Header/Header.tsx';
+// @ts-ignore
+import Query from './components/Query/Query.tsx';
+// @ts-ignore
+import Route from './components/Route/Route.tsx';
 
 // dummyData
 const data = {
@@ -40,11 +39,11 @@ const App = () => {
 
   return (
     <Box width={20} padding={1} flexDirection="column" justifyContent="flex-start">
-      <Box paddingBottom={1}>
+      {/* <Box paddingBottom={1}>
         <Text>
           Test
         </Text>
-      </Box>
+      </Box> */}
 
       <Header width="50%"/>
 
@@ -52,11 +51,13 @@ const App = () => {
       <Box paddingBottom={1}>
         <Query  />
       </Box>
+      */}
 
-      <Box width={10} textWrap="truncate" flexBasis={10}>
+      <Box width={10} flexBasis={10}>
         <Route progress="85.12345" />
       </Box>
 
+      {/*
       <Trip stations={stations} />
 
       <Box>
