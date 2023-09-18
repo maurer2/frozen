@@ -7,26 +7,11 @@ import statusJson from './dumps/trip-pp9.json';
 import tripJson from './dumps/status-00p.json';
 import usageInfoJson from './dumps/usage_info-f8r.json';
 
-import {statusSchema, type StatusNew} from './schemas/status/status'
-import {tripSchema, type TripNew} from './schemas/trip/trip'
-import type {UsageInfoNew} from './schemas/usage-info/usage-info'
+import {type StatusNew} from './schemas/status/status'
+import {type TripNew} from './schemas/trip/trip'
 
-export type TestResponse = {
-  status: StatusNew | null,
-  trip: TripNew | null,
-  usageInfo: UsageInfoNew,
-  timestamp: number;
-}
-
-// typeguards
-// workaround until const import is implemented: https://github.com/microsoft/TypeScript/issues/32063
-const isStatusNew = (unknownObject: unknown): unknownObject is StatusNew => {
-  return statusSchema.safeParse(unknownObject).success;
-}
-
-const isTripNew = (unknownObject: unknown): unknownObject is TripNew => {
-  return tripSchema.safeParse(unknownObject).success;
-}
+import {isStatusNew, isTripNew} from './types'
+import type {TestResponse} from './types';
 
 const getTestData = (): TestResponse => ({
   status: isStatusNew(statusJson)
@@ -41,18 +26,22 @@ const getTestData = (): TestResponse => ({
   timestamp: Date.now(),
 });
 
-const routesMap: Record<string, StatusNew | TripNew | TestResponse> = {
-  '/status': statusJson as StatusNew,
-  '/trip': tripJson as TripNew,
+const routeNames = ['/status', '/trip', '/test'] as const;
+type RouteNames = typeof routeNames[number];
+
+const routesMap: Record<RouteNames, StatusNew | TripNew | TestResponse | null> = {
+  '/status': isStatusNew(statusJson) ? statusJson : null,
+  '/trip': isTripNew(tripJson) ? tripJson : null,
   '/test': getTestData(),
 };
+type RoutePayloads = typeof routesMap[RouteNames];
 
-const getRouteData = (routeName: string): StatusNew | TripNew | TestResponse | boolean => {
+const getRouteData = (routeName: RouteNames): RoutePayloads => {
   const routes = Object.keys(routesMap);
   const routeIsMatching: boolean = routes.some((route: string) => route.includes(routeName));
 
-  if (!routeIsMatching) {
-    return false;
+  if (!routeIsMatching || !(routeName in routesMap)) {
+    return null;
   }
 
   return (routeName === '/test') ? getTestData() : routesMap[routeName];
@@ -73,29 +62,31 @@ const createErrorResponse = (response: ServerResponse): ServerResponse => {
   return response;
 };
 
+// todo make generic and move it to types
+function isValidRouteName(route: string, routes: typeof routeNames): route is RouteNames {
+  return routes.includes(route as RouteNames);
+}
+
 const server: Server = http.createServer((
   request: IncomingMessage,
   response: ServerResponse,
 ): ServerResponse => {
   const { url: urlRaw } = request;
-
   if (!urlRaw) {
     return createErrorResponse(response);
   }
 
   const currentRoute = url.parse(urlRaw)?.pathname;
-
-  if (!currentRoute) {
+  if (!currentRoute || !isValidRouteName(currentRoute, routeNames)) {
     return createErrorResponse(response);
   }
 
   const routeData = getRouteData(currentRoute);
-
   if (!routeData) {
     return createErrorResponse(response);
   }
 
-  const routeDataStringified: string = JSON.stringify(routeData);
+  const routeDataStringified = JSON.stringify(routeData);
 
   return createJSONResponse(response, routeDataStringified);
 });
