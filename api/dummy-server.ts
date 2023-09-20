@@ -2,6 +2,7 @@ import http, {type ServerResponse, type IncomingMessage, type Server} from 'node
 import url from 'node:url';
 
 import random from 'lodash/random';
+import { match, P } from 'ts-pattern';
 
 import statusJson from './dumps/trip-pp9.json';
 import tripJson from './dumps/status-00p.json';
@@ -36,16 +37,16 @@ const routesMap: Record<RouteNames, StatusNew | TripNew | TestResponse | null> =
 };
 type RoutePayloads = typeof routesMap[RouteNames];
 
-const getRouteData = (routeName: RouteNames): RoutePayloads => {
-  const routes = Object.keys(routesMap);
-  const routeIsMatching: boolean = routes.some((route: string) => route.includes(routeName));
+// const getRouteData = (routeName: RouteNames): RoutePayloads => {
+//   const routes = Object.keys(routesMap);
+//   const routeIsMatching: boolean = routes.some((route: string) => route.includes(routeName));
 
-  if (!routeIsMatching || !(routeName in routesMap)) {
-    return null;
-  }
+//   if (!routeIsMatching || !(routeName in routesMap)) {
+//     return null;
+//   }
 
-  return (routeName === '/test') ? getTestData() : routesMap[routeName];
-};
+//   return (routeName === '/test') ? getTestData() : routesMap[routeName];
+// };
 
 const createJSONResponse = (response: ServerResponse, data: string): ServerResponse => {
   response.setHeader('Content-Type', 'application/json');
@@ -81,10 +82,18 @@ const server: Server = http.createServer((
     return createErrorResponse(response);
   }
 
-  const routeData = getRouteData(currentRoute);
-  if (!routeData) {
-    return createErrorResponse(response);
-  }
+  const routeData = match<RouteNames>(currentRoute)
+    .with('/test', () => getTestData())
+    .with(
+      P.when((route) => isValidRouteName(route, routeNames)),
+      (route) => routesMap[route]
+    )
+    .otherwise(() => createErrorResponse(response));
+
+  // const routeData = getRouteData(currentRoute);
+  // if (!routeData) {
+  //   return createErrorResponse(response);
+  // }
 
   const routeDataStringified = JSON.stringify(routeData);
 

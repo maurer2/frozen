@@ -24,6 +24,7 @@
     "lodash.random": "^3.2.0",
     "node-fetch": "^2.6.0",
     "ts-node": "^8.1.0",
+    "ts-pattern": "^5.0.5",
     "typescript": "^5.2.2",
     "uid": "^0.0.2",
     "vite": "^4.4.9",
