@@ -1,5 +1,5 @@
 import http, {type ServerResponse, type IncomingMessage, type Server} from 'node:http';
-import url from 'node:url';
+import {URL}  from 'node:url';
 
 import random from 'lodash/random';
 import { match, P } from 'ts-pattern';
@@ -35,18 +35,7 @@ const routesMap: Record<RouteNames, StatusNew | TripNew | TestResponse | null> =
   '/trip': isTripNew(tripJson) ? tripJson : null,
   '/test': getTestData(),
 };
-type RoutePayloads = typeof routesMap[RouteNames];
-
-// const getRouteData = (routeName: RouteNames): RoutePayloads => {
-//   const routes = Object.keys(routesMap);
-//   const routeIsMatching: boolean = routes.some((route: string) => route.includes(routeName));
-
-//   if (!routeIsMatching || !(routeName in routesMap)) {
-//     return null;
-//   }
-
-//   return (routeName === '/test') ? getTestData() : routesMap[routeName];
-// };
+// type RoutePayloads = typeof routesMap[RouteNames];
 
 const createJSONResponse = (response: ServerResponse, data: string): ServerResponse => {
   response.setHeader('Content-Type', 'application/json');
@@ -63,37 +52,31 @@ const createErrorResponse = (response: ServerResponse): ServerResponse => {
   return response;
 };
 
-// todo make generic and move it to types
-function isValidRouteName(route: string, routes: typeof routeNames): route is RouteNames {
-  return routes.includes(route as RouteNames);
-}
-
 const server: Server = http.createServer((
   request: IncomingMessage,
   response: ServerResponse,
 ): ServerResponse => {
-  const { url: urlRaw } = request;
-  if (!urlRaw) {
+  const { url } = request;
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/54920
+  if (!url) {
     return createErrorResponse(response);
   }
 
-  const currentRoute = url.parse(urlRaw)?.pathname;
-  if (!currentRoute || !isValidRouteName(currentRoute, routeNames)) {
-    return createErrorResponse(response);
-  }
+  const currentRoute = new URL(url, `https://${request.headers.host}`).pathname;
 
-  const routeData = match<RouteNames>(currentRoute)
+  // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-567871939
+  const routeData = match<RouteNames | undefined | (string & {})>(currentRoute)
+    .with(undefined, () => createErrorResponse(response))
+    // todo
+    .with('/', () => createErrorResponse(response))
+    // getTestData needs to be dynamic
     .with('/test', () => getTestData())
+    // ignore strings that are not RoutNames
     .with(
-      P.when((route) => isValidRouteName(route, routeNames)),
+      P.when((route): route is RouteNames => routeNames.includes(route as RouteNames)),
       (route) => routesMap[route]
     )
     .otherwise(() => createErrorResponse(response));
-
-  // const routeData = getRouteData(currentRoute);
-  // if (!routeData) {
-  //   return createErrorResponse(response);
-  // }
 
   const routeDataStringified = JSON.stringify(routeData);
 
