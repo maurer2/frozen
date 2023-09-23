@@ -65,22 +65,18 @@ const server: Server = http.createServer((
   const currentRoute = new URL(url, `https://${request.headers.host}`).pathname;
 
   // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-567871939
-  const routeData = match<RouteNames | undefined | (string & {})>(currentRoute)
-    .with(undefined, () => createErrorResponse(response))
-    // todo
+  const routeData = match<RouteNames | (string & {})>(currentRoute)
     .with('/', () => createErrorResponse(response))
     // getTestData needs to be dynamic
-    .with('/test', () => getTestData())
-    // ignore strings that are not RoutNames
+    .with('/test', () => createJSONResponse(response, JSON.stringify(getTestData())))
+    // ignore strings that are not RouteNames
     .with(
       P.when((route): route is RouteNames => routeNames.includes(route as RouteNames)),
-      (route) => routesMap[route]
+      (route) => createJSONResponse(response, JSON.stringify(routesMap[route]))
     )
     .otherwise(() => createErrorResponse(response));
 
-  const routeDataStringified = JSON.stringify(routeData);
-
-  return createJSONResponse(response, routeDataStringified);
+  return routeData;
 });
 
 server.listen(8080, (error?: Error): void => {
