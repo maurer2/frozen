@@ -56,17 +56,17 @@ const server: Server = http.createServer((
   request: IncomingMessage,
   response: ServerResponse,
 ): ServerResponse => {
-  const { url } = request;
+  const { url, headers } = request;
   // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/54920
   if (!url) {
     return createErrorResponse(response);
   }
 
-  const currentRoute = new URL(url, `https://${request.headers.host}`).pathname;
+  const currentRoute = new URL(url, `https://${headers.host}`).pathname;
 
   // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-567871939
   const routeData = match<RouteNames | (string & {})>(currentRoute)
-    .with('/', () => createErrorResponse(response))
+    // .with('/', () => createErrorResponse(response))
     // getTestData needs to be dynamic
     .with('/test', () => createJSONResponse(response, JSON.stringify(getTestData())))
     // ignore strings that are not RouteNames
