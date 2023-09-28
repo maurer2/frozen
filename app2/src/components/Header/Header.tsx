@@ -2,8 +2,8 @@ import React, {ReactElement} from 'react';
 import {Box, BoxProps} from 'ink';
 import BigText from 'ink-big-text';
 
-type Props = {
-  width?: BoxProps['width'];
+type Props = Pick<BoxProps, 'width'> & {
+  // width?: BoxProps['width'];
 }
 
 const Header = ({width}: Props): ReactElement  => {

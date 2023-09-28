@@ -10,12 +10,12 @@ type AcceptedKeys = typeof acceptedKeys[number];
 export default function App() {
   const {exit} = useApp();
 
-  useInput((input: AcceptedKeys | (string & {})): void => {
+  useInput((input: AcceptedKeys | (string & {}), key): void => {
     if (!((acceptedKeys as ReadonlyArray<string>).includes(input))) {
       return;
     }
 
-    if (input === 'q') {
+    if (input === 'q' || key.escape) {
       exit();
     }
   });
@@ -23,7 +23,7 @@ export default function App() {
   return (
     <>
       <Box>
-        <Header width="100%"/>
+        <Header width="100%" />
       </Box>
       <Box>
         <Text color="white">
