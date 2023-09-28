@@ -4,6 +4,10 @@ import Spinner from 'ink-spinner';
 
 import Header from './components/Header/Header.js';
 import Route from './components/Route/Route.js';
+import Trip from './components/Trip/Trip.js';
+
+import JSON_Trip from '../../api/dumps/status-00p.json' assert { type: 'json' };
+import type { TripNew } from '../../api/schemas/trip/trip.js';
 
 const acceptedKeys = ['q'] as const satisfies readonly string[];
 type AcceptedKeys = (typeof acceptedKeys)[number];
@@ -28,6 +32,10 @@ export default function App() {
       </Box>
       <Box>
         <Route marginBottom={2} progressValue={50} />
+      </Box>
+      <Box marginBottom={2}>
+        {/* todo: remove assertion */}
+        <Trip stops={JSON_Trip.trip.stops as TripNew['trip']['stops']} />
       </Box>
       <Box>
         <Text color="white">

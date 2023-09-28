@@ -19,7 +19,7 @@ const Route = ({ progressValue = 0, marginBottom = 0 }: Props) => {
       <Box width={40}>
           <ProgressBar value={progressValue} />
       </Box>
-      <Text bold>
+      <Text>
         {' '}
         {progressValueSafe}%
       </Text>
