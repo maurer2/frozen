@@ -10,14 +10,12 @@ type Props = Pick<BoxProps, 'marginBottom'> & {
 const Trip = ({ stops, marginBottom = 0 }: Props) => {
   return (
     <Box marginBottom={marginBottom}>
-      <Box>
-        <Text bold>Stations: </Text>
-      </Box>
+      <Text bold>Stations: </Text>
       <Box>
         <OrderedList>
           {stops.map((station, index) => (
             <OrderedList.Item key={station?.station?.evaNr ?? index}>
-              <Box gap={2} marginBottom={1}>
+              <Box gap={2}>
                 <Text>{station?.station?.name ?? '-'}</Text>
                 <Badge color="blue">Not passed</Badge>
               </Box>

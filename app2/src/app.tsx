@@ -6,6 +6,8 @@ import Header from './components/Header/Header.js';
 import Route from './components/Route/Route.js';
 import Trip from './components/Trip/Trip.js';
 
+import useAPI from './hooks/useAPI.js';
+
 import JSON_Trip from '../../api/dumps/status-00p.json' assert { type: 'json' };
 import type { TripNew } from '../../api/schemas/trip/trip.js';
 
@@ -14,6 +16,9 @@ type AcceptedKeys = (typeof acceptedKeys)[number];
 
 export default function App() {
   const { exit } = useApp();
+
+  const statusRequest = useAPI('http://localhost:8080');
+  statusRequest.then((status) => console.log(status));
 
   useInput((input: AcceptedKeys | (string & {}), key): void => {
     // if (!(acceptedKeys as ReadonlyArray<string>).includes(input)) {
