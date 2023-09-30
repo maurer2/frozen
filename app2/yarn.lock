@@ -164,6 +164,19 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/tsconfig/-/tsconfig-3.0.1.tgz#e2eaebda42aa7a755b11bdfbea847446652e1ac4"
   integrity sha512-0/gtPNTY3++0J2BZM5nHHULg0BIMw886gqdn8vWN+Av6bgF5ZU2qIcHubAn+Z9KNvJhO8WFE+9kDOU3n6OcKtA==
 
+"@tanstack/query-core@4.35.3":
+  version "4.35.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.35.3.tgz#1c127e66b4ad1beeac052db83a812d7cb67369e1"
+  integrity sha512-PS+WEjd9wzKTyNjjQymvcOe1yg8f3wYc6mD+vb6CKyZAKvu4sIJwryfqfBULITKCla7P9C4l5e9RXePHvZOZeQ==
+
+"@tanstack/react-query@^4.35.3":
+  version "4.35.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.35.3.tgz#03d726ef6a19d426166427c6539b003dd9606d1b"
+  integrity sha512-UgTPioip/rGG3EQilXfA2j4BJkhEQsR+KAbF+KIuvQ7j4MkgnTCJF01SfRpIRNtQTlEfz/+IL7+jP8WA8bFbsw==
+  dependencies:
+    "@tanstack/query-core" "4.35.3"
+    use-sync-external-store "^1.2.0"
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
@@ -344,6 +357,11 @@
   version "10.9.6"
   resolved "https://registry.yarnpkg.com/@zodios/core/-/core-10.9.6.tgz#64ad831216e6ffa71679ea6be8d1ed882bb04d83"
   integrity sha512-aH4rOdb3AcezN7ws8vDgBfGboZMk2JGGzEq/DtW65MhnRxyTGRuLJRWVQ/2KxDgWvV2F5oTkAS+5pnjKbl0n+A==
+
+"@zodios/react@^10.4.5":
+  version "10.4.5"
+  resolved "https://registry.yarnpkg.com/@zodios/react/-/react-10.4.5.tgz#e796152ee034f24facc5c8a156d98c81c43eaec5"
+  integrity sha512-2jisuquf30bEQg6KzhtYnoutXEQD9uD/I0vBO3d3AzL91SLhFTeHNSk2MwkBj0LL/wCIWt9v0sUL52OMv++EwQ==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -3183,6 +3201,14 @@ quick-lru@^6.1.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-6.1.2.tgz#e9a90524108629be35287d0b864e7ad6ceb3659e"
   integrity sha512-AAFUA5O1d83pIHEhJwWCq/RQcRukCkn/NSm2QsTEMle5f2hP0ChI2+3Xb051PZCkLryI/Ir1MVKviT2FIloaTQ==
 
+react-dom@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
+  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+  dependencies:
+    loose-envify "^1.1.0"
+    scheduler "^0.23.0"
+
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -3875,6 +3901,11 @@ url-or-path@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/url-or-path/-/url-or-path-2.1.0.tgz#8bb39a2a2b7e8f2e31c7883d8207b0cbd07acb9f"
   integrity sha512-dsBD6GbytSMj9YDb3jVzSRENwFh50oUORnWBeSHfo0Lnwv2KMm/J4npyGy1P9rivUPsUGLjTA53XqAFqpe0nww==
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

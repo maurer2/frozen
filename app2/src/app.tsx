@@ -17,8 +17,12 @@ type AcceptedKeys = (typeof acceptedKeys)[number];
 export default function App() {
   const { exit } = useApp();
 
-  const statusRequest = useAPI('http://localhost:8080');
-  statusRequest.then((status) => console.log(status));
+  const queries = useAPI('http://localhost:8080');
+  const { data: dataStatus, isLoading: isLoadingStatus } = queries.useGetStatusData();
+  const { data: dataTrip, isLoading: isLoadingTrip } = queries.useGetTripData();
+
+  console.log(dataStatus, isLoadingStatus);
+  console.log(dataTrip, isLoadingTrip);
 
   useInput((input: AcceptedKeys | (string & {}), key): void => {
     // if (!(acceptedKeys as ReadonlyArray<string>).includes(input)) {

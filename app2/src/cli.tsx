@@ -1,8 +1,11 @@
 #!/usr/bin/env ts-node
 import React from 'react';
-import {render} from 'ink';
+import { render } from 'ink';
 // import meow from 'meow';
-import App from './app.js';
+import App from './App.js';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 // const cli = meow(
 //   `
@@ -36,4 +39,8 @@ process.on('exit', (): void => {
   process.stdout.write(leaveFullscreenCommand);
 });
 
-render(<App />);
+render(
+  <QueryClientProvider client={queryClient}>
+    <App />
+  </QueryClientProvider>
+);
