@@ -45,13 +45,15 @@ export default function App() {
           <Speed marginBottom={2} speedValue={dataStatus.speed} />
         </Box>
       )}
-      <Box>
-        <Route marginBottom={2} progressValue={50} />
-      </Box>
       {!isLoadingTrip && dataTrip && (
-        <Box>
-          <Trip marginBottom={2} stops={dataTrip.trip.stops} />
-        </Box>
+        <>
+          <Box>
+            <Route marginBottom={2} trip={dataTrip.trip} />
+          </Box>
+          <Box>
+            <Trip marginBottom={2} stops={dataTrip.trip.stops} />
+          </Box>
+        </>
       )}
       <Box>
         <Text color="white">
