@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Text, BoxProps } from 'ink';
 
+import type { StatusNew } from '../../../../api/schemas/status/status.js';
+
 type Props = Pick<BoxProps, 'marginBottom'> & {
-  speedValue?: number;
+  speedValue: StatusNew['speed'],
 };
 
 const Speed = ({ speedValue = 0, marginBottom = 0 }: Props) => {
@@ -12,7 +14,7 @@ const Speed = ({ speedValue = 0, marginBottom = 0 }: Props) => {
   return (
     <Box marginBottom={marginBottom}>
       <Text bold>Current speed: </Text>
-      <Text>{speedValueSafe} km/h</Text>
+      <Text>{speedValueSafe} kph</Text>
     </Box>
   );
 };
