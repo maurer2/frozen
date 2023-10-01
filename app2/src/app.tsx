@@ -57,7 +57,7 @@ export default function App() {
         <Text color="white">
           <Spinner type="aesthetic" />{' '}
         </Text>
-        <Text>Press "q" to quit.</Text>
+        <Text>Press "q" or "ESC" to quit.</Text>
       </Box>
     </>
   );
