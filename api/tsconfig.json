@@ -7,21 +7,13 @@
     "target": "ES2022",
     "noImplicitAny": true,
     "removeComments": true,
-    // "preserveConstEnums": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "strict": true,
   },
-  "include": [
-    "./types.d.ts",
-    "./**.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["./types.d.ts", "./**.ts"],
+  "exclude": ["node_modules", "./fetch-and-dump.js"],
   "paths": {
-    "*": [
-      "./types.d.ts",
-    ]
+    "*": ["./types.d.ts"]
   }
 }

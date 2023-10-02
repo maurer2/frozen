@@ -1,6 +1,5 @@
 import uid from 'uid';
 import fs from 'fs-extra';
-import fetch from 'node-fetch';
 
 // urls
 const routesMap = {
