@@ -7,6 +7,7 @@ import Header from './components/Header/Header.js';
 import Route from './components/Route/Route.js';
 import Trip from './components/Trip/Trip.js';
 import Speed from './components/Speed/Speed.js';
+import AtAGlance from './components/AtAGlance/AtAGlance.js';
 
 import useAPI from './hooks/useAPI.js';
 
@@ -42,6 +43,9 @@ export default function App(): ReactElement {
       <Box>
         <Header width="100%" marginBottom={2} />
       </Box>
+      {!isLoadingTrip && dataTrip && (
+        <AtAGlance trip={dataTrip.trip} marginBottom={2} />
+      )}
       {!isLoadingStatus && dataStatus && (
         <Box>
           <Speed marginBottom={2} speedValue={dataStatus.speed} />
