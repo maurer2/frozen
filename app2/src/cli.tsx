@@ -1,8 +1,9 @@
 #!/usr/bin/env ts-node
 import React from 'react';
 import { render } from 'ink';
-import App from './App.js';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import App from './App.js';
 
 const queryClient = new QueryClient();
 
@@ -19,5 +20,5 @@ process.on('exit', (): void => {
 render(
   <QueryClientProvider client={queryClient}>
     <App />
-  </QueryClientProvider>
+  </QueryClientProvider>,
 );

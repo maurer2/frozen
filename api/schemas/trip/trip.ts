@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 // https://iceportal.de/api1/rs/tripInfo/trip
 
@@ -6,7 +6,7 @@ export const tripSchema = z.object({
   // loose mode to ignore unnecessary keys and keys that might be added in the future
   trip: z.object({
     tripDate: z.string(), // short date
-    trainType: z.enum(["ICE", "IC"]),
+    trainType: z.enum(['ICE', 'IC']),
     vzn: z.string(), // train number without type
     actualPosition: z.number().nonnegative(),
     distanceFromLastStop: z.number().nonnegative(),
@@ -47,19 +47,22 @@ export const tripSchema = z.object({
         info: z.object({
           status: z.number(),
           passed: z.boolean(),
-          positionStatus: z.enum(["future", "passed", "departed"]), // departed -> previous stop // passed -> stops before previous stop
+          positionStatus: z.enum(['future', 'passed', 'departed']), // departed -> previous stop // passed -> stops before previous stop
           distance: z.number(),
           distanceFromStart: z.number(),
         }),
-        delayReasons: z.array(
-          z.object({
-            code: z.string(),
-            text: z.string(),
-          })
-        ).nullable(),
-      })
+        delayReasons: z
+          .array(
+            z.object({
+              code: z.string(),
+              text: z.string(),
+            }),
+          )
+          .nullable(),
+      }),
     ),
   }),
 });
 
 export type TripNew = z.infer<typeof tripSchema>;
+export type Stop = TripNew['trip']['stops'][number];

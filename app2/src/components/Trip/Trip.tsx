@@ -3,13 +3,13 @@ import React from 'react';
 import { Box, Text, type BoxProps } from 'ink';
 import { OrderedList, Badge, type BadgeProps } from '@inkjs/ui';
 
-import type { TripNew } from '../../../../api/schemas/trip/trip.js';
+import type { TripNew, Stop } from '../../../../api/schemas/trip/trip.js';
 
 type Props = Pick<BoxProps, 'marginBottom'> & {
   stops: TripNew['trip']['stops'];
 };
 
-type PositionStatus = (TripNew['trip']['stops'][number])['info']['positionStatus'];
+type PositionStatus = Stop['info']['positionStatus'];
 type PositionStatusBadge = Record<PositionStatus, BadgeProps['color']>;
 
 const positionStatusBadgeMap: PositionStatusBadge = {
