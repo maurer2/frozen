@@ -1,12 +1,11 @@
-import React, { ReactElement } from 'react';
-import { Box, BoxProps } from 'ink';
+import type { ReactElement } from 'react';
+import React from 'react';
+import { Box, type BoxProps } from 'ink';
 import BigText from 'ink-big-text';
 
-type Props = Pick<BoxProps, 'width' | 'marginBottom'> & {
-  // width?: BoxProps['width'];
-};
+type Props = Pick<BoxProps, 'width' | 'marginBottom'>;
 
-const Header = ({ width, marginBottom = 0 }: Props): ReactElement => {
+function Header({ width = '100%', marginBottom = 0 }: Props): ReactElement {
   const colors = ['red'];
 
   return (
@@ -20,6 +19,6 @@ const Header = ({ width, marginBottom = 0 }: Props): ReactElement => {
       />
     </Box>
   );
-};
+}
 
 export default Header;

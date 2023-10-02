@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import React from 'react';
 import { Text, useApp, Box, useInput } from 'ink';
 import Spinner from 'ink-spinner';
@@ -15,7 +16,7 @@ import useAPI from './hooks/useAPI.js';
 const acceptedKeys = ['q'] as const satisfies readonly string[];
 type AcceptedKeys = (typeof acceptedKeys)[number];
 
-export default function App() {
+export default function App(): ReactElement {
   const { exit } = useApp();
 
   const queries = useAPI('http://localhost:8080');
@@ -25,6 +26,7 @@ export default function App() {
   // console.log(dataStatus, isLoadingStatus);
   // console.log(dataTrip, isLoadingTrip);
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   useInput((input: AcceptedKeys | (string & {}), key): void => {
     // if (!(acceptedKeys as ReadonlyArray<string>).includes(input)) {
     //   return;
