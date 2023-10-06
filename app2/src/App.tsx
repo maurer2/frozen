@@ -18,7 +18,7 @@ import useAPI from './hooks/useAPI.js';
 const acceptedKeys = ['q'] as const satisfies readonly string[];
 type AcceptedKeys = (typeof acceptedKeys)[number];
 
-const url = env.URL_DEV;
+const url = new URL(`${env.URL_DEV}:${env.PORT_DEV}`);
 
 export default function App(): ReactElement {
   const { exit } = useApp();
@@ -37,7 +37,7 @@ export default function App(): ReactElement {
     // }
 
     if (input === 'q' || key.escape) {
-      exit();
+      exit(); // doesn't seem to work in tsx watch mode
     }
   });
 

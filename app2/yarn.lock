@@ -278,10 +278,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/tsconfig/-/tsconfig-4.0.0.tgz#984800e38855dfd99ecf3229fb8e33a35a82610a"
   integrity sha512-ZPfPpln4Yl07TE5ULbCkESdvfNq+zen9QPIEnvKSPYgHBhbLSGPGH/G4uF76RUijc/LA7PkVXljjxT4b+5/vpQ==
 
-"@t3-oss/env-core@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@t3-oss/env-core/-/env-core-0.6.1.tgz#24d04c22f3e73732e69ac8ff8b13ed00732d20aa"
-  integrity sha512-KQD7qEDJtkWIWWmTVjNvk0wnHpkvAQ6CRbUxbWMFNG/fiosBQDQvtRpBNu6USxBscJCoC4z6y7P9MN52/mLOzw==
+"@t3-oss/env-core@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@t3-oss/env-core/-/env-core-0.7.0.tgz#aaecfc2c1ae92d55713ba89c8ab64554d447c076"
+  integrity sha512-cgunN82CqgQOOyuMOK/bGtujX5/ooXQTwGMJVWI6mCowq6WE5EgRLOqF/DRcrElI0gSFGA9i9GrxzCnk73HZLQ==
 
 "@tanstack/query-core@4.35.7":
   version "4.35.7"
