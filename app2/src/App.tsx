@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, useApp, Box, useInput } from 'ink';
 import Spinner from 'ink-spinner';
 
+import env from './env.js';
 import Header from './components/Header/Header.js';
 import Route from './components/Route/Route.js';
 import Trip from './components/Trip/Trip.js';
@@ -17,10 +18,12 @@ import useAPI from './hooks/useAPI.js';
 const acceptedKeys = ['q'] as const satisfies readonly string[];
 type AcceptedKeys = (typeof acceptedKeys)[number];
 
+const url = new URL(`${env.URL_DEV}:${env.PORT_DEV}`);
+
 export default function App(): ReactElement {
   const { exit } = useApp();
 
-  const queries = useAPI('http://localhost:8080');
+  const queries = useAPI(url);
   // prettier-ignore
   const { data: dataStatus, isLoading: isLoadingStatus } = queries.useGetStatusData();
   const { data: dataTrip, isLoading: isLoadingTrip } = queries.useGetTripData();
@@ -34,7 +37,7 @@ export default function App(): ReactElement {
     // }
 
     if (input === 'q' || key.escape) {
-      exit();
+      exit(); // doesn't seem to work in tsx watch mode
     }
   });
 

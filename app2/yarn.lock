@@ -278,6 +278,11 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/tsconfig/-/tsconfig-4.0.0.tgz#984800e38855dfd99ecf3229fb8e33a35a82610a"
   integrity sha512-ZPfPpln4Yl07TE5ULbCkESdvfNq+zen9QPIEnvKSPYgHBhbLSGPGH/G4uF76RUijc/LA7PkVXljjxT4b+5/vpQ==
 
+"@t3-oss/env-core@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@t3-oss/env-core/-/env-core-0.7.0.tgz#aaecfc2c1ae92d55713ba89c8ab64554d447c076"
+  integrity sha512-cgunN82CqgQOOyuMOK/bGtujX5/ooXQTwGMJVWI6mCowq6WE5EgRLOqF/DRcrElI0gSFGA9i9GrxzCnk73HZLQ==
+
 "@tanstack/query-core@4.35.7":
   version "4.35.7"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.35.7.tgz#31d6f520ab8abedb6024d2d870af8afca764d048"
@@ -1297,6 +1302,11 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dotenv@^16.3.1:
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"

@@ -4,8 +4,8 @@ import { ZodiosHooks } from '@zodios/react';
 import statusSchemaImport from '../../../api/schemas/status/status.js';
 import tripSchemaImport from '../../../api/schemas/trip/trip.js';
 
-const useAPI = (url: string) => {
-  const apiClient = new Zodios(url, [
+const useAPI = (url: string | URL) => {
+  const apiClient = new Zodios(url.toString(), [
     // status
     {
       method: 'get',

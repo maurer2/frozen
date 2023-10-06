@@ -2,6 +2,7 @@
 import React from 'react';
 import { render } from 'ink';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'dotenv/config.js';
 
 import App from './App.js';
 
