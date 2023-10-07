@@ -18,7 +18,7 @@ import useAPI from './hooks/useAPI.js';
 const acceptedKeys = ['q'] as const satisfies readonly string[];
 type AcceptedKeys = (typeof acceptedKeys)[number];
 
-const url = new URL(`${env.URL_DEV}:${env.PORT_DEV}`);
+const url = new URL(`${env.URL}:${env.PORT}`);
 
 export default function App(): ReactElement {
   const { exit } = useApp();
