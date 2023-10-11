@@ -1,8 +1,8 @@
 {
-  "name": "ice-on-board-api-dump",
+  "name": "frozen-api",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:maurer2/ice-on-board-api-dump.git",
+  "repository": "git@github.com:maurer2/frozen.git",
   "author": "Martin",
   "license": "MIT",
   "dependencies": {
@@ -26,7 +26,12 @@
     "vite": "^4.4.9",
     "vitest": "^0.34.6",
     "zod": "^3.22.2",
-    "zod-fixture": "^2.5.0"
+    "zod-fixture": "^2.5.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jsdom": "^22.1.0"
   },
   "scripts": {
     "start": "ts-node './dummy-server.ts'",
@@ -38,16 +43,5 @@
     "schema:test:status": "vitest './schemas/status/status.spec.ts'",
     "schema:test:trip": "vitest './schemas/trip/trip.spec.ts'",
     "schema:test:usage-schema": "vitest './schemas/usage-info/usage-info.spec.ts'"
-  },
-  "resolutions": {
-    "**/**/eslint-utils": "^1.4.1",
-    "**/**/lodash": "^4.17.13"
-  },
-  "devDependencies": {
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "jsdom": "^22.1.0"
   }
 }

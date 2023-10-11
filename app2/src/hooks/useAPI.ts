@@ -17,7 +17,7 @@ const useAPI = (url: string | URL) => {
     // trip
     {
       method: 'get',
-      path: '/trip',
+      path: '/tripInfo/trip',
       alias: 'getTripData',
       description: 'Get trip data',
       response: tripSchemaImport.tripSchema,

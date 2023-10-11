@@ -32,10 +32,6 @@ export default function App(): ReactElement {
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   useInput((input: AcceptedKeys | (string & {}), key): void => {
-    // if (!(acceptedKeys as ReadonlyArray<string>).includes(input)) {
-    //   return;
-    // }
-
     if (input === 'q' || key.escape) {
       exit(); // doesn't seem to work in tsx watch mode
     }

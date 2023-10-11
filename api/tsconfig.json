@@ -13,7 +13,4 @@
   },
   "include": ["./types.d.ts", "./**.ts"],
   "exclude": ["node_modules", "./fetch-and-dump.js"],
-  "paths": {
-    "*": ["./types.d.ts"]
-  }
 }

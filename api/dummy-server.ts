@@ -13,6 +13,7 @@ import usageInfoJson from './dumps/usage_info-f8r.json';
 
 import { type StatusNew } from './schemas/status/status';
 import { type TripNew } from './schemas/trip/trip';
+import { type UsageInfoNew } from './schemas/usage-info/usage-info';
 
 import { isStatusNew, isTripNew } from './types';
 import type { TestResponse } from './types';
@@ -29,12 +30,21 @@ const getTestData = (): TestResponse => ({
   timestamp: Date.now(),
 });
 
-const routeNames = ['/status', '/trip', '/test'] as const;
+const routeNames = [
+  '/status',
+  '/tripInfo/trip',
+  '/usage_info',
+  '/test',
+] as const;
 type RouteNames = (typeof routeNames)[number];
 
-const routesMap: Record<RouteNames, StatusNew | TripNew | TestResponse | null> = {
+const routesMap: Record<
+  RouteNames,
+  StatusNew | TripNew | UsageInfoNew | TestResponse | null
+> = {
   '/status': isStatusNew(statusJson) ? statusJson : null,
-  '/trip': isTripNew(tripJson) ? tripJson : null,
+  '/tripInfo/trip': isTripNew(tripJson) ? tripJson : null,
+  '/usage_info': usageInfoJson,
   '/test': getTestData(),
 };
 
@@ -68,7 +78,7 @@ const server: Server = http.createServer(
 
     // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-567871939
     // eslint-disable-next-line @typescript-eslint/ban-types
-    const routeData = match<RouteNames |(string & {})>(currentRoute)
+    const routeData = match(currentRoute)
       // getTestData needs to be dynamic
       .with('/test', () => createJSONResponse(response, JSON.stringify(getTestData())))
       // ignore strings that are not RouteNames
@@ -82,10 +92,14 @@ const server: Server = http.createServer(
   },
 );
 
-server.listen(8080, (error?: Error): void => {
+server.listen(8080, 'localhost', (error?: Error): void => {
   if (error) {
     console.error('Error', error);
+    process.exit();
   }
 
-  console.log('Listening on 8080: http://localhost:8080/test');
+  const routeList = routeNames.map((route) => ({
+    url: new URL(route, 'http://localhost:8080/').toString(),
+  }));
+  console.table(routeList);
 });
