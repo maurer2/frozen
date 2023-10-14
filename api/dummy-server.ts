@@ -1,22 +1,21 @@
+import random from 'lodash.random';
 import http, {
-  type ServerResponse,
   type IncomingMessage,
   type Server,
+  type ServerResponse,
 } from 'node:http';
 import { URL } from 'node:url';
-import random from 'lodash.random';
-import { match, P } from 'ts-pattern';
+import { P, match } from 'ts-pattern';
 
-import statusJson from './dumps/trip-pp9.json';
+import type { TestResponse } from './types';
+
 import tripJson from './dumps/status-00p.json';
+import statusJson from './dumps/trip-pp9.json';
 import usageInfoJson from './dumps/usage_info-f8r.json';
-
 import { type StatusNew } from './schemas/status/status';
 import { type TripNew } from './schemas/trip/trip';
 import { type UsageInfoNew } from './schemas/usage-info/usage-info';
-
 import { isStatusNew, isTripNew } from './types';
-import type { TestResponse } from './types';
 
 const getTestData = (): TestResponse => ({
   status: isStatusNew(statusJson)
@@ -25,9 +24,9 @@ const getTestData = (): TestResponse => ({
       speed: random(0, 320, false),
     }
     : null,
+  timestamp: Date.now(),
   trip: isTripNew(tripJson) ? tripJson : null,
   usageInfo: usageInfoJson,
-  timestamp: Date.now(),
 });
 
 const routeNames = [
@@ -40,12 +39,12 @@ type RouteNames = (typeof routeNames)[number];
 
 const routesMap: Record<
   RouteNames,
-  StatusNew | TripNew | UsageInfoNew | TestResponse | null
+  StatusNew | TestResponse | TripNew | UsageInfoNew | null
 > = {
   '/status': isStatusNew(statusJson) ? statusJson : null,
+  '/test': getTestData(),
   '/tripInfo/trip': isTripNew(tripJson) ? tripJson : null,
   '/usage_info': usageInfoJson,
-  '/test': getTestData(),
 };
 
 const createJSONResponse = (
@@ -68,7 +67,7 @@ const createErrorResponse = (response: ServerResponse): ServerResponse => {
 
 const server: Server = http.createServer(
   (request: IncomingMessage, response: ServerResponse): ServerResponse => {
-    const { url, headers } = request;
+    const { headers, url } = request;
     // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/54920
     if (!url) {
       return createErrorResponse(response);

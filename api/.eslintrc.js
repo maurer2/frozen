@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   extends: [
     'eslint:recommended',
+    'plugin:perfectionist/recommended-natural',
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
   ],
@@ -15,7 +16,10 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: [
+    '@typescript-eslint',
+    'zod',
+  ],
   settings: {
     'import/resolver': {
       node: {

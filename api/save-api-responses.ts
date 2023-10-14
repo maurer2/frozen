@@ -6,6 +6,7 @@ const routesMap = {
   trip: 'https://iceportal.de/api1/rs/tripInfo/trip',
   status: 'https://iceportal.de/api1/rs/status',
   'usage-info': 'https://login.wifionice.de/usage_info/',
+  config: 'https://iceportal.de/bap/api/config',
 } as const;
 
 const fetchDataFromApi = (url: string) => {
@@ -68,3 +69,4 @@ const fetchApiData = (url: string, name: string) => {
 fetchApiData(routesMap.status, 'status');
 fetchApiData(routesMap.trip, 'trip');
 fetchApiData(routesMap['usage-info'], 'usage-info');
+fetchApiData(routesMap.config, 'config');

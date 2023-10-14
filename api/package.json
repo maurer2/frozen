@@ -15,23 +15,22 @@
     "eslint": "^8.50.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-perfectionist": "^2.2.0",
+    "eslint-plugin-zod": "^1.4.0",
     "fs-extra": "^11.1.1",
+    "jsdom": "^22.1.0",
     "lodash.random": "^3.2.0",
     "nanoid": "3",
     "node-fetch": "2",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
     "ts-pattern": "^5.0.5",
+    "type-fest": "^4.4.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vitest": "^0.34.6",
     "zod": "^3.22.2",
-    "zod-fixture": "^2.5.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "jsdom": "^22.1.0"
+    "zod-fixture": "^2.5.0"
   },
   "scripts": {
     "start": "ts-node './dummy-server.ts'",
@@ -42,6 +41,7 @@
     "save-api-responses": "ts-node './save-api-responses.ts'",
     "schema:test:status": "vitest './schemas/status/status.spec.ts'",
     "schema:test:trip": "vitest './schemas/trip/trip.spec.ts'",
-    "schema:test:usage-schema": "vitest './schemas/usage-info/usage-info.spec.ts'"
+    "schema:test:usage-schema": "vitest './schemas/usage-info/usage-info.spec.ts'",
+    "schema:test:config": "vitest './schemas/config/config.spec.ts'"
   }
 }

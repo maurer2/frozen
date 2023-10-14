@@ -11,6 +11,6 @@
     "moduleResolution": "node",
     "strict": true,
   },
-  "include": ["./types.d.ts", "./**.ts"],
-  "exclude": ["node_modules", "./fetch-and-dump.js"],
+  "include": ["./types.d.ts", "./**/*.ts"],
+  "exclude": ["node_modules"],
 }
