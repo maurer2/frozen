@@ -47,7 +47,10 @@ export const tripSchema = z.object({
         info: z.object({
           status: z.number(),
           passed: z.boolean(),
-          positionStatus: z.enum(['future', 'passed', 'departed']), // departed -> previous stop // passed -> stops before previous stop
+          // passed -> stop(s) before previous stop
+          // arrived -> current stop, only shown when train is stopping at the station
+          // departed -> previous stop
+          positionStatus: z.enum(['future', 'passed', 'departed', 'arrived']),
           distance: z.number(),
           distanceFromStart: z.number(),
         }),

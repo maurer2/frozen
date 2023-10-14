@@ -16,6 +16,7 @@ const positionStatusBadgeMap: PositionStatusBadge = {
   passed: 'magenta',
   departed: 'blue',
   future: 'white',
+  arrived: 'red',
 };
 
 const Trip = ({ stops, marginBottom = 0 }: Props): ReactElement => {
