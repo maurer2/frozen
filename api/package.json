@@ -34,6 +34,7 @@
   },
   "scripts": {
     "start": "ts-node './dummy-server.ts'",
+    "start2": "ts-node './dummy-server2.ts'",
     "lint:js": "eslint './**/*.js'",
     "lint:js:fix": "eslint './**/*.js' --fix",
     "lint:ts": "eslint './**/*.ts'",

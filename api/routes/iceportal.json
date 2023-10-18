@@ -1,0 +1,5 @@
+{
+  "config": "/bap/api/config",
+  "status": "/api1/rs/status",
+  "trip": "/api1/rs/tripInfo/trip"
+}
