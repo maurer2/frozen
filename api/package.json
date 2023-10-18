@@ -8,10 +8,11 @@
   "dependencies": {
     "@types/fs-extra": "^11.0.2",
     "@types/lodash.random": "^3.2.7",
-    "@types/node": "^20.8.3",
+    "@types/node": "^20.8.7",
     "@types/node-fetch": "2",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
+    "dotenv": "^16.3.1",
     "eslint": "^8.50.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "^2.28.1",

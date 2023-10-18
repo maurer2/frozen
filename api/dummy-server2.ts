@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import http, {
   type IncomingMessage,
   type Server,
@@ -9,6 +10,8 @@ import { P, match } from 'ts-pattern';
 import type { IcePortal } from './routes/iceportal';
 
 import routesJSONIcePortal from './routes/iceportal.json';
+
+dotenv.config({ debug: true, path: `${__dirname}/../app2/.env` });
 
 const createJSONResponse = (
   response: ServerResponse,
@@ -48,14 +51,23 @@ const server: Server = http.createServer(
   },
 );
 
-server.listen(8080, 'localhost', (error?: Error): void => {
-  if (error) {
-    console.error('Error', error);
-    process.exit();
-  }
+const serverUrl = new URL(`${process.env.URL}:${process.env.PORT}`);
 
-  const routeList = Object.keys(routesJSONIcePortal).map((route) => ({
-    url: new URL((routesJSONIcePortal as IcePortal)[route], 'http://localhost:8080/').toString(),
-  }));
-  console.table(routeList);
-});
+server.listen(
+  serverUrl.port,
+  parseInt(serverUrl.hostname, 10),
+  (error?: Error): void => {
+    if (error) {
+      console.error('Error', error);
+      process.exit();
+    }
+
+    const routeList = Object.keys(routesJSONIcePortal).map((route) => ({
+      url: new URL(
+        (routesJSONIcePortal as IcePortal)[route],
+        serverUrl.href,
+      ).toString(),
+    }));
+    console.table(routeList);
+  },
+);
