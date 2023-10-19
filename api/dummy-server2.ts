@@ -11,7 +11,7 @@ import type { IcePortal } from './routes/iceportal';
 
 import routesJSONIcePortal from './routes/iceportal.json';
 
-dotenv.config({ debug: true, path: `${__dirname}/../app2/.env` });
+dotenv.config({ debug: true, path: `${__dirname}/../.env` });
 
 const createJSONResponse = (
   response: ServerResponse,
