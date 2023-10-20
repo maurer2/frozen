@@ -16,18 +16,15 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: [
-    '@typescript-eslint',
-    'zod',
-  ],
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.ts'],
-        moduleDirectory: ['node_modules'],
-      },
-    },
-  },
+  plugins: ['@typescript-eslint', 'zod'],
+  // settings: {
+  //   'import/resolver': {
+  //     node: {
+  //       extensions: ['.js', '.ts', '.tsx'],
+  //       moduleDirectory: ['src', 'node_modules'],
+  //     },
+  //   },
+  // },
   rules: {
     'no-console': 'off',
     'import/extensions': [
@@ -36,11 +33,10 @@ module.exports = {
       {
         ts: 'never',
         tsx: 'never',
+        js: 'always',
       },
     ],
+    'import/no-unresolved': 'off', // https://stackoverflow.com/questions/71998932/make-import-extensions-require-the-js-extension-in-a-node-js-typescript-proje
     '@typescript-eslint/consistent-type-imports': 'warn',
   },
-  ignorePatterns: [
-    './fetch-and-dump.js'
-  ],
 };

@@ -7,15 +7,15 @@ import http, {
 import { URL } from 'node:url';
 import { P, match } from 'ts-pattern';
 
-import type { TestResponse } from './types';
+import type { StatusNew } from './schemas/status/status.js';
+import type { TripNew } from './schemas/trip/trip.js';
+import type { UsageInfoNew } from './schemas/usage-info/usage-info.js';
+import type { TestResponse } from './types.js';
 
-import tripJson from './dumps/status-00p.json';
-import statusJson from './dumps/trip-pp9.json';
-import usageInfoJson from './dumps/usage_info-f8r.json';
-import { type StatusNew } from './schemas/status/status';
-import { type TripNew } from './schemas/trip/trip';
-import { type UsageInfoNew } from './schemas/usage-info/usage-info';
-import { isStatusNew, isTripNew } from './types';
+import tripJson from './dumps/status-00p.json' assert { type: 'json' };
+import statusJson from './dumps/trip-pp9.json' assert { type: 'json' };
+import usageInfoJson from './dumps/usage_info-f8r.json' assert { type: 'json' };
+import { isStatusNew, isTripNew } from './types.js';
 
 const getTestData = (): TestResponse => ({
   status: isStatusNew(statusJson)

@@ -5,55 +5,18 @@ import { z } from 'zod';
 export const tripSchema = z.object({
   // loose mode to ignore unnecessary keys and keys that might be added in the future
   trip: z.object({
-    tripDate: z.string(), // short date
-    trainType: z.enum(['ICE', 'IC']),
-    vzn: z.string(), // train number without type
     actualPosition: z.number().nonnegative(),
     distanceFromLastStop: z.number().nonnegative(),
-    totalDistance: z.number().nonnegative(),
     stopInfo: z.object({
-      scheduledNext: z.string(),
-      actualNext: z.string(),
       actualLast: z.string(),
       actualLastStarted: z.string(),
-      finalStationName: z.string(),
+      actualNext: z.string(),
       finalStationEvaNr: z.string(),
+      finalStationName: z.string(),
+      scheduledNext: z.string(),
     }),
     stops: z.array(
       z.object({
-        station: z.object({
-          evaNr: z.string(),
-          name: z.string(),
-          code: z.string().nullable(),
-          geocoordinates: z.object({
-            latitude: z.number(),
-            longitude: z.number(),
-          }),
-        }),
-        timetable: z.object({
-          scheduledArrivalTime: z.number().nullable(),
-          actualArrivalTime: z.number().nullable(),
-          showActualArrivalTime: z.boolean().nullable(),
-          arrivalDelay: z.string(), // maybe .nullable()
-          scheduledDepartureTime: z.number().nullable(),
-          actualDepartureTime: z.number().nullable(),
-          showActualDepartureTime: z.boolean().nullable(),
-          departureDelay: z.string(), // maybe .nullable()
-        }),
-        track: z.object({
-          scheduled: z.string(),
-          actual: z.string(),
-        }),
-        info: z.object({
-          status: z.number(),
-          passed: z.boolean(),
-          // passed -> stop(s) before previous stop
-          // arrived -> current stop, only shown when train is stopping at the station
-          // departed -> previous stop
-          positionStatus: z.enum(['future', 'passed', 'departed', 'arrived']),
-          distance: z.number(),
-          distanceFromStart: z.number(),
-        }),
         delayReasons: z
           .array(
             z.object({
@@ -62,8 +25,45 @@ export const tripSchema = z.object({
             }),
           )
           .nullable(),
+        info: z.object({
+          distance: z.number(),
+          distanceFromStart: z.number(),
+          // passed -> stop(s) before previous stop
+          // arrived -> current stop, only shown when train is stopping at the station
+          passed: z.boolean(),
+          // departed -> previous stop
+          positionStatus: z.enum(['future', 'passed', 'departed', 'arrived']),
+          status: z.number(),
+        }),
+        station: z.object({
+          code: z.string().nullable(),
+          evaNr: z.string(),
+          geocoordinates: z.object({
+            latitude: z.number(),
+            longitude: z.number(),
+          }),
+          name: z.string(),
+        }),
+        timetable: z.object({
+          actualArrivalTime: z.number().nullable(),
+          actualDepartureTime: z.number().nullable(),
+          arrivalDelay: z.string(), // maybe .nullable()
+          departureDelay: z.string(), // maybe .nullable()
+          scheduledArrivalTime: z.number().nullable(),
+          scheduledDepartureTime: z.number().nullable(),
+          showActualArrivalTime: z.boolean().nullable(),
+          showActualDepartureTime: z.boolean().nullable(),
+        }),
+        track: z.object({
+          actual: z.string(),
+          scheduled: z.string(),
+        }),
       }),
     ),
+    totalDistance: z.number().nonnegative(),
+    trainType: z.enum(['ICE', 'IC']),
+    tripDate: z.string(), // short date
+    vzn: z.string(), // train number without type
   }),
 });
 
