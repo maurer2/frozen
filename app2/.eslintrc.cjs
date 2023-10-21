@@ -4,6 +4,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:perfectionist/recommended-natural',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:react/recommended',
     'airbnb-base',
     'airbnb-typescript/base',
   ],

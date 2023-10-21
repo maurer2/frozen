@@ -47,7 +47,7 @@ export default function App(): ReactElement {
 
       {!dataTrip || !dataStatus ? (
         <Alert variant="error">
-          <Text>API couldn't be fetched.</Text>
+          <Text>API couldn&apos;t be fetched.</Text>
         </Alert>
       ) : (
         <>
@@ -68,7 +68,7 @@ export default function App(): ReactElement {
             <Text color="white">
               <Spinner type="aesthetic" />{' '}
             </Text>
-            <Text>Press "q" or "ESC" to quit.</Text>
+            <Text>Press &quot;q&quot; or &quot;ESC&quot; to quit.</Text>
           </Box>
         </>
       )}
