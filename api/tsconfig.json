@@ -10,7 +10,6 @@
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "allowSyntheticDefaultImports": true,
   },
   "include": ["./types.d.ts", "./**/*.ts"],
   "exclude": ["node_modules"],

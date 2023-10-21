@@ -1,8 +1,8 @@
 import { Zodios } from '@zodios/core';
 import { ZodiosHooks } from '@zodios/react';
 
-import statusSchemaImport from '../../../api/schemas/status/status.js';
-import tripSchemaImport from '../../../api/schemas/trip/trip.js';
+import { statusSchema } from '../../../api/schemas/status/status.js';
+import { tripSchema } from '../../../api/schemas/trip/trip.js';
 
 const useAPI = (url: string | URL) => {
   const apiClient = new Zodios(url.toString(), [
@@ -12,7 +12,7 @@ const useAPI = (url: string | URL) => {
       path: '/status',
       alias: 'getStatusData',
       description: 'Get status data',
-      response: statusSchemaImport.statusSchema,
+      response: statusSchema,
     }, // satisfies ZodiosEndpointDefinition,
     // trip
     {
@@ -20,7 +20,7 @@ const useAPI = (url: string | URL) => {
       path: '/tripInfo/trip',
       alias: 'getTripData',
       description: 'Get trip data',
-      response: tripSchemaImport.tripSchema,
+      response: tripSchema,
     }, // satisfies ZodiosEndpointDefinition,
   ]);
   const apiHooks = new ZodiosHooks('ice', apiClient);
