@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react';
+
+import { Box, type BoxProps, Text } from 'ink';
 import React from 'react';
-import { Box, Text, type BoxProps } from 'ink';
 
 import type { StatusNew } from '../../../../api/schemas/status/status.js';
 
@@ -14,7 +15,7 @@ const speedFormatter = new Intl.NumberFormat('en-GB', {
   unitDisplay: 'short',
 });
 
-const Speed = ({ speedValue = 0, marginBottom = 0 }: Props): ReactElement => {
+const Speed = ({ marginBottom = 0, speedValue = 0 }: Props): ReactElement => {
   // number between 0 and 320;
   const speedValueSafe = Math.min(Math.max(0, speedValue), 320);
 

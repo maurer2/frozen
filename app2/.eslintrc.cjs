@@ -2,8 +2,10 @@ module.exports = {
   root: true,
   extends: [
     'eslint:recommended',
+    'plugin:perfectionist/recommended-natural',
     'plugin:@typescript-eslint/recommended',
-    'airbnb-typescript',
+    'airbnb-base',
+    'airbnb-typescript/base',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,6 +23,5 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'warn',
     'react/jsx-filename-extension': 'off',
     'import/extensions': 'off',
-    'import/no-extraneous-dependencies': 'off'
   },
 };

@@ -1,16 +1,18 @@
 import type { ReactElement } from 'react';
-import React from 'react';
-import { Text, useApp, Box, useInput } from 'ink';
-import Spinner from 'ink-spinner';
-import { Alert } from '@inkjs/ui';
 
-import env from './env.js';
+import { Alert } from '@inkjs/ui';
+import {
+  Box, Text, useApp, useInput,
+} from 'ink';
+import Spinner from 'ink-spinner';
+import React from 'react';
+
+import AtAGlance from './components/AtAGlance/AtAGlance.js';
 import Header from './components/Header/Header.js';
 import Route from './components/Route/Route.js';
-import Trip from './components/Trip/Trip.js';
 import Speed from './components/Speed/Speed.js';
-import AtAGlance from './components/AtAGlance/AtAGlance.js';
-
+import Trip from './components/Trip/Trip.js';
+import env from './env.js';
 import useAPI from './hooks/useAPI.js';
 
 // import JSON_Trip from '../../api/dumps/status-00p.json' assert { type: 'json' };
@@ -41,7 +43,7 @@ export default function App(): ReactElement {
 
   return (
     <>
-      <Header width="100%" marginBottom={2} />
+      <Header marginBottom={2} width="100%" />
 
       {!dataTrip || !dataStatus ? (
         <Alert variant="error">
@@ -50,7 +52,7 @@ export default function App(): ReactElement {
       ) : (
         <>
           {!isLoadingTrip && dataTrip && (
-            <AtAGlance trip={dataTrip.trip} marginBottom={2} />
+            <AtAGlance marginBottom={2} trip={dataTrip.trip} />
           )}
           {!isLoadingStatus && dataStatus && (
             <Speed marginBottom={2} speedValue={dataStatus.speed} />

@@ -1,7 +1,8 @@
 import type { ReactElement } from 'react';
-import React from 'react';
-import { Box, Text, type BoxProps } from 'ink';
+
 import dayjs from 'dayjs';
+import { Box, type BoxProps, Text } from 'ink';
+import React from 'react';
 
 import type { TripNew } from '../../../../api/schemas/trip/trip.js';
 
@@ -15,25 +16,25 @@ const distanceFormatter = new Intl.NumberFormat('en-GB', {
   unitDisplay: 'long',
 });
 
-const AtAGlance = ({ trip, marginBottom = 0 }: Props): ReactElement => {
+const AtAGlance = ({ marginBottom = 0, trip }: Props): ReactElement => {
   const borderStyle: BoxProps['borderStyle'] = 'double';
   const tripDateFormatted = dayjs(trip.tripDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
 
   return (
-    <Box marginBottom={marginBottom} flexDirection="row" gap={2}>
-      <Box paddingX={1} flexGrow={1} flexBasis={0} borderStyle={borderStyle}>
+    <Box flexDirection="row" gap={2} marginBottom={marginBottom}>
+      <Box borderStyle={borderStyle} flexBasis={0} flexGrow={1} paddingX={1}>
         <Text bold>Date: </Text>
         <Text>{tripDateFormatted}</Text>
       </Box>
-      <Box paddingX={1} flexGrow={1} flexBasis={0} borderStyle={borderStyle}>
+      <Box borderStyle={borderStyle} flexBasis={0} flexGrow={1} paddingX={1}>
         <Text bold>Train: </Text>
         <Text>{trip.trainType} {trip.vzn}</Text>
       </Box>
-      <Box paddingX={1} flexGrow={1} flexBasis={0} borderStyle={borderStyle}>
+      <Box borderStyle={borderStyle} flexBasis={0} flexGrow={1} paddingX={1}>
         <Text bold>Stops: </Text>
         <Text>{trip.stops.length}</Text>
       </Box>
-      <Box paddingX={1} flexGrow={1} flexBasis={0} borderStyle={borderStyle}>
+      <Box borderStyle={borderStyle} flexBasis={0} flexGrow={1} paddingX={1}>
         <Text bold>Route length: </Text>
         <Text>{distanceFormatter.format(trip.totalDistance / 1000)}</Text>
       </Box>

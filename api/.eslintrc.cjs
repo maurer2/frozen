@@ -3,8 +3,9 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:perfectionist/recommended-natural',
-    'airbnb-base',
     'plugin:@typescript-eslint/recommended',
+    'airbnb-base',
+    'airbnb-typescript/base',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {

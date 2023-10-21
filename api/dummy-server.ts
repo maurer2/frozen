@@ -38,8 +38,8 @@ const routeNames = [
 type RouteNames = (typeof routeNames)[number];
 
 const routesMap: Record<
-  RouteNames,
-  StatusNew | TestResponse | TripNew | UsageInfoNew | null
+RouteNames,
+StatusNew | TestResponse | TripNew | UsageInfoNew | null
 > = {
   '/status': isStatusNew(statusJson) ? statusJson : null,
   '/test': getTestData(),

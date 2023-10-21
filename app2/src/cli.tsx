@@ -1,7 +1,7 @@
 #!/usr/bin/env ts-node
-import React from 'react';
-import { render } from 'ink';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render } from 'ink';
+import React from 'react';
 
 import App from './App.js';
 

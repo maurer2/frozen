@@ -1,7 +1,8 @@
 import type { ReactElement } from 'react';
+
+import { Badge, type BadgeProps, OrderedList } from '@inkjs/ui';
+import { Box, type BoxProps, Text } from 'ink';
 import React from 'react';
-import { Box, Text, type BoxProps } from 'ink';
-import { OrderedList, Badge, type BadgeProps } from '@inkjs/ui';
 
 import type { Stop } from '../../../../api/schemas/trip/trip.js';
 
@@ -13,14 +14,13 @@ type PositionStatus = Stop['info']['positionStatus'];
 type PositionStatusBadge = Record<PositionStatus, BadgeProps['color']>;
 
 const positionStatusBadgeMap: PositionStatusBadge = {
-  passed: 'magenta',
+  arrived: 'red',
   departed: 'blue',
   future: 'white',
-  arrived: 'red',
+  passed: 'magenta',
 };
 
-const Trip = ({ stops, marginBottom = 0 }: Props): ReactElement => {
-  return (
+const Trip = ({ marginBottom = 0, stops }: Props): ReactElement => (
     <Box marginBottom={marginBottom}>
       <Text bold>Stations: </Text>
       <Box>
@@ -38,7 +38,6 @@ const Trip = ({ stops, marginBottom = 0 }: Props): ReactElement => {
         </OrderedList>
       </Box>
     </Box>
-  );
-};
+);
 
 export default Trip;
