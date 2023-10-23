@@ -1,3 +1,9 @@
 {
-  "usage-info": "https://login.wifionice.de/usage_info/"
+  "host": "login.wifionice.de",
+  "pathnames": {
+    "usage-info": "/usage_info/"
+  },
+  "savedApiResponses": {
+    "usage-info": "usage-info-eP9dMC0ZJx1gp3DsJ6TfF.json"
+  }
 }

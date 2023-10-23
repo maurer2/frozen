@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "ts-node --esm './dummy-server.ts'",
-    "start2": "ts-node './dummy-server2.ts'",
+    "start2": "ts-node --esm './dummy-server2.ts'",
     "lint": "eslint './**/*.ts'",
     "lint:fix": "eslint './**/*.ts' --fix",
     "save-api-responses": "ts-node './save-api-responses.ts'",

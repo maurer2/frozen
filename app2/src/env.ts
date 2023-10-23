@@ -2,7 +2,7 @@
 import { createEnv } from '@t3-oss/env-core';
 import { config } from 'dotenv';
 import path from 'node:path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));

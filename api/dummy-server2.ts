@@ -4,14 +4,32 @@ import http, {
   type Server,
   type ServerResponse,
 } from 'node:http';
-import { URL } from 'node:url';
+import path from 'node:path';
+import { URL, fileURLToPath } from 'node:url';
 import { P, match } from 'ts-pattern';
 
-import type { IcePortal } from './routes/iceportal';
+import type { Routes } from './routes/index.js';
 
-import routesJSONIcePortal from './routes/iceportal.json';
+import routesIcePortal from './routes/iceportal.json' assert { type: 'json' };
+import routesWifionice from './routes/wifionice.json' assert { type: 'json' };
 
-dotenv.config({ debug: true, path: `${__dirname}/../.env` });
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ debug: true, path: `${dirname}/../.env` });
+
+const savedApiResponses: Routes['savedApiResponses'] = {
+  ...routesIcePortal.savedApiResponses,
+  ...routesWifionice.savedApiResponses,
+};
+
+// todo check for duplicates that would get overwritten
+const routes: Routes['pathnames'] = {
+  ...routesIcePortal.pathnames,
+  ...routesWifionice.pathnames,
+};
+
+const routesValueKeyMap = Object.fromEntries(
+  Object.entries(routes).map(([routeKey, routePath]) => [routePath, routeKey]),
+);
 
 const createJSONResponse = (
   response: ServerResponse,
@@ -32,7 +50,10 @@ const createErrorResponse = (response: ServerResponse): ServerResponse => {
 };
 
 const server: Server = http.createServer(
-  (request: IncomingMessage, response: ServerResponse): ServerResponse => {
+  async (
+    request: IncomingMessage,
+    response: ServerResponse,
+  ): Promise<ServerResponse> => {
     const { headers, url } = request;
     // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/54920
     if (!url) {
@@ -40,10 +61,20 @@ const server: Server = http.createServer(
     }
 
     const currentRoute = new URL(url, `https://${headers.host}`).pathname;
-    const routeData = match(currentRoute)
+    const routeData = await match(currentRoute)
       .with(
-        P.when((route) => Object.values(routesJSONIcePortal).includes(route)),
-        (route) => createJSONResponse(response, JSON.stringify({ url: route })),
+        P.when((route) => Object.values(routes).includes(route)),
+        (route) => {
+          const routeKey = routesValueKeyMap[route];
+          const savedApiResponseFileName = savedApiResponses[routeKey];
+
+          // todo trigger otherwise without match
+          return import(`./saved-api-responses/${savedApiResponseFileName}`, {
+            assert: { type: 'json' },
+          })
+            .then((file) => createJSONResponse(response, JSON.stringify(file)))
+            .catch(() => createErrorResponse(response));
+        },
       )
       .otherwise(() => createErrorResponse(response));
 
@@ -62,11 +93,8 @@ server.listen(
       process.exit();
     }
 
-    const routeList = Object.keys(routesJSONIcePortal).map((route) => ({
-      url: new URL(
-        (routesJSONIcePortal as IcePortal)[route],
-        serverUrl.href,
-      ).toString(),
+    const routeList = Object.keys(routes).map((route) => ({
+      url: new URL(routes[route], serverUrl.href).toString(),
     }));
     console.table(routeList);
   },
