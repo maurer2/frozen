@@ -8,7 +8,7 @@ import path from 'node:path';
 import { URL, fileURLToPath } from 'node:url';
 import { P, match } from 'ts-pattern';
 
-import type { Routes } from './routes/index.js';
+import type { Route, Routes } from './routes/index.js';
 
 import routesIcePortal from './routes/iceportal.json' assert { type: 'json' };
 import routesWifionice from './routes/wifionice.json' assert { type: 'json' };
@@ -16,19 +16,12 @@ import routesWifionice from './routes/wifionice.json' assert { type: 'json' };
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ debug: true, path: `${dirname}/../.env` });
 
-const savedApiResponses: Routes['savedApiResponses'] = {
-  ...routesIcePortal.savedApiResponses,
-  ...routesWifionice.savedApiResponses,
+const routesWithApiResponses: Routes = {
+  ...routesIcePortal.routes,
+  ...routesWifionice.routes,
 };
-
-// todo check for duplicates that would get overwritten
-const routes: Routes['pathnames'] = {
-  ...routesIcePortal.pathnames,
-  ...routesWifionice.pathnames,
-};
-
-const routesValueKeyMap = Object.fromEntries(
-  Object.entries(routes).map(([routeKey, routePath]) => [routePath, routeKey]),
+const routesWithApiResponsesValues: Route[] = Object.values(
+  routesWithApiResponses,
 );
 
 const createJSONResponse = (
@@ -63,15 +56,25 @@ const server: Server = http.createServer(
     const currentRoute = new URL(url, `https://${headers.host}`).pathname;
     const routeData = await match(currentRoute)
       .with(
-        P.when((route) => Object.values(routes).includes(route)),
+        P.when((route) => routesWithApiResponsesValues.some(
+          ({ pathname }) => pathname === route,
+        )),
         (route) => {
-          const routeKey = routesValueKeyMap[route];
-          const savedApiResponseFileName = savedApiResponses[routeKey];
+          const matchingRoute: Route | undefined = routesWithApiResponsesValues.find(
+            ({ pathname }) => pathname === route,
+          );
+
+          if (!matchingRoute) {
+            createErrorResponse(response);
+          }
 
           // todo trigger otherwise without match
-          return import(`./saved-api-responses/${savedApiResponseFileName}`, {
-            assert: { type: 'json' },
-          })
+          return import(
+            `./saved-api-responses/${matchingRoute?.savedApiResponse}`,
+            {
+              assert: { type: 'json' },
+            }
+          )
             .then((file) => createJSONResponse(response, JSON.stringify(file)))
             .catch(() => createErrorResponse(response));
         },
@@ -93,8 +96,10 @@ server.listen(
       process.exit();
     }
 
-    const routeList = Object.keys(routes).map((route) => ({
-      url: new URL(routes[route], serverUrl.href).toString(),
+    const routeList = routesWithApiResponsesValues.map((currentRoute) => ({
+      url: new URL(currentRoute.pathname, serverUrl.href).toString(),
+      // eslint-disable-next-line perfectionist/sort-objects
+      json: `${dirname}/saved-api-responses/${currentRoute.savedApiResponse}`,
     }));
     console.table(routeList);
   },

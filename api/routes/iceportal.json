@@ -1,14 +1,17 @@
 {
   "host": "iceportal.de",
-  "pathnames": {
-    "config": "/bap/api/config",
-    "status": "/api1/rs/status",
-    "trip": "/api1/rs/tripInfo/trip"
-  },
-  "savedApiResponses": {
-    "config": "config-uQYFvhUEt6kYHWNTPjDY5.json",
-    "status": "status-hVafIRipZd9tB0tFRhujy.json",
-    "trip": "trip-1JzDRzsBxenbN9biZvzjg.json",
-    "usage-info": "usage-info-eP9dMC0ZJx1gp3DsJ6TfF.json"
+  "routes": {
+    "config": {
+      "pathname": "/bap/api/config",
+      "savedApiResponse": "config-uQYFvhUEt6kYHWNTPjDY5.json"
+    },
+    "status": {
+      "pathname": "/api1/rs/status",
+      "savedApiResponse": "status-hVafIRipZd9tB0tFRhujy.json"
+    },
+    "trip": {
+      "pathname": "/api1/rs/tripInfo/trip",
+      "savedApiResponse": "trip-1JzDRzsBxenbN9biZvzjg.json"
+    }
   }
 }

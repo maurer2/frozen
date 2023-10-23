@@ -1,19 +1,18 @@
 import { z } from 'zod';
-// import routesIcePortal from './iceportal.json' assert { type: 'json' };
-// import routesWifionice from './wifionice.json' assert { type: 'json' };
 
 export const routesSchema = z
   .object({
     host: z.string().min(1),
-    pathnames: z.record(
+    routes: z.record(
       z.string().min(1),
-      z.string().min(1).startsWith('/'),
-    ),
-    savedApiResponses: z.record(
-      z.string().min(1),
-      z.string().min(1).endsWith('./json'),
+      z.object({
+        pathname: z.string().min(1).startsWith('/'),
+        savedApiResponse: z.string().min(1).endsWith('.json'),
+      }),
     ),
   })
   .strict();
 
-export type Routes = z.infer<typeof routesSchema>;
+export type RoutesObject = z.infer<typeof routesSchema>;
+export type Routes = RoutesObject['routes'];
+export type Route = Routes[number];
