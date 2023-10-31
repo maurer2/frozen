@@ -8,8 +8,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "ts-node --esm './src/cli.tsx'",
-    "start:watch": "tsx watch './src/cli.tsx'",
+    "start": "NODE_ENV=production ts-node --esm './src/cli.tsx'",
+    "start:dev": "NODE_ENV=development DEV=true tsx watch './src/cli.tsx'",
+    "start:devtools": "npx react-devtools",
     "build": "tsc",
     "serve:dist": "node './dist/cli.js'",
     "test": "prettier --check . && xo && ava",
@@ -48,6 +49,7 @@
     "ink-testing-library": "^3.0.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
+    "react-devtools": "^4.28.5",
     "react-dom": "^18.2.0",
     "ts-node": "^10.9.1",
     "tsx": "^3.14.0",
