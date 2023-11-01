@@ -6,7 +6,8 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noPropertyAccessFromIndexSignature": false,
   },
   "include": ["./**/*.ts", "./**/*.tsx"]
 }
